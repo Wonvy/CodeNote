@@ -1,7 +1,7 @@
 
 import { codeLoad, code_add, code_save, showScreen, item_mouseover, sideHide, code_show, code_show_keydonw } from '/js/event.js'
 
-const hostURL = 'http://192.168.6.126:3000'
+
 // const hostURL = 'http://localhost:3000'
 const navul = document.getElementsByClassName("navul");
 const container = document.getElementById("container");

@@ -1,5 +1,10 @@
 export { postJsonAdd, postJsonDel }
 
+// const hostURL = ''
+// const hostURL = 'http://192.168.6.126:3000'
+const hostURL = 'http://127.0.0.1:3000'
+
+
 // 添加数据
 async function postJsonAdd(data) {
 	await fetch(hostURL + '/json/add/', {
@@ -24,7 +29,10 @@ async function postJsonDel(id) {
 			}
 		]
 	}
-	await fetch(hostURL + '/json/del/', {
+	// console.log(hostURL + '/json/del/')
+	// console.log(data)
+	let URL = hostURL + '/json/del/'
+	await fetch(URL, {
 		method: 'post',
 		headers: {
 			'Content-Type': 'application/json'

@@ -10,7 +10,7 @@
 
 
 运行node服务器
-C:\Code\Linux\Node\CodeNote\public> nodemon idnex.js
+C:\Code\Linux\Node\CodeNote\public> nodemon index.js
 
 运行
 

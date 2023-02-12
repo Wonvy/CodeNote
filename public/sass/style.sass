@@ -3,6 +3,10 @@
 @import './components/base'
 @import './components/button'
 
+@mixin ipadPro
+	@media screen and (max-device-height: 1668px) and (max-device-width: 2388px)
+		@content
+
 html,body
 	position: relative
 	width: 100%
@@ -135,6 +139,7 @@ html,body
 	flex-direction: column
 	border-right: 1px solid rgba(117, 107, 107, 0)
 	@include foldingButton(">","▶")
+	z-index: 999
 	&.header
 		flex: 2
 		color: #ffffff
@@ -218,6 +223,7 @@ html,body
 	flex-direction: column
 	background: #282828
 	align-items: center
+	box-sizing: border-box
 	// transition: all 2s; 
 	.nav
 		display: flex
@@ -230,6 +236,12 @@ html,body
 		align-items: flex-start
 		z-index: 99
 		transition: all 0.5s
+		@include ipadPro
+			width: auto
+			height: 100%
+			justify-content: center
+			flex-direction: column-reverse
+			overflow: hidden
 		// opacity: 0; 
 		&:hover
 			opacity: 1
@@ -239,6 +251,11 @@ html,body
 			gap: 1.2em
 			flex-direction: row
 			align-items: center
+			@include ipadPro
+				height: 60%
+				overflow-y: auto
+				margin-left: 3em
+				flex-direction: column
 			li
 				cursor: pointer
 				// display: flex; 
@@ -255,6 +272,10 @@ html,body
 				width: 2.2em
 				height: 2.2em
 				transition: all 0.2s
+				@include ipadPro
+					padding: 0 3em 0 2em
+					width: 3.5em
+					height: 3.5em
 		dl
 			&.listview
 				// display: flex
@@ -306,6 +327,11 @@ html,body
 				svg
 					width: 4em
 					fill: #676767
+			@include ipadPro
+				display: none
+	@include ipadPro
+		flex-direction: row
+		align-items: flex-start
 
 //
 #container.layout-grid
@@ -445,6 +471,8 @@ html,body
 		&.select
 			box-sizing: border-box
 			border: solid 2px #fff
+	@include ipadPro
+		box-sizing: border-box
 
 #container.layout-list
 	flex: 1

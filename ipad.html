@@ -1,36 +1,42 @@
-<!DOCTYPE HTML>
-<html lang="zh-cn">
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-	<meta charset="utf-8" />
-	<title>Javasc1ripd t</title>
-	<style>
-		body {
-			margin: 0;
-			padding: 0;
-			background: #ccc;
-			font-size: 12px;
-			overflow: auto
-		}
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
 
-		.main {
-			width: 500px;
-			height: 330px;
-			position: relative;
-			margin: 250px auto 0;
-			background-color: #eee;
-		}
+	<head>
+		<meta charset="utf-8" />
+		<title>Javasc1ripd t</title>
+		<style>
+			body {
+				margin: 0;
+				padding: 0;
+				background: #f03a3a;
+				font-size: 12px;
+				overflow: auto
+			}
 
-		.box {
-			position: absolute;
-			width: 220px;
-			height: 180px;
-			background-color: rgb(128, 102, 53);
-			top: 80px;
-			left: 80px;
-		}
-	</style>
-</head>
+			.main {
+				width: 500px;
+				height: 330px;
+				position: relative;
+				margin: 250px auto 0;
+				background-color: #eee;
+			}
+
+			.box {
+				position: absolute;
+				width: 220px;
+				height: 180px;
+				background-color: rgb(128, 102, 53);
+				top: 80px;
+				left: 80px;
+			}
+		</style>
+	</head>
 
 <body>
 	<div class="main">
@@ -39,26 +45,32 @@
 
 	<script>
 		function load() {
-
-			document.addEventListener('touchstart', touch, false);
-			document.addEventListener('touchmove', touch, false);
-			document.addEventListener('touchend', touch, false);
+			var oInp = document.getElementById("inp");
+			oInp.addEventListener('touchstart', touch, false);
+			oInp.addEventListener('touchmove', touch, false);
+			oInp.addEventListener('touchend', touch, false);
 
 			function touch(event) {
 				var event = event || window.event;
 
 				var oInp = document.getElementById("inp");
+				console.log(event)
+				let div = '</br>' + event.touches.length + '</br>' + event.changedTouches.length;
+				// let div = '</br>' + event.touches[0].target.nodeName + '.' + event.touches[0].target.className;
+				// let div2 = '</br>' + event.changedTouches[0].target.nodeName + '.' + event.changedTouches[0].target.className;
+				// let div2 = '</br>' + event.changedTouches[0].target.nodeName + '.' + event.changedTouches[0].target.className;
 
 				switch (event.type) {
 					case "touchstart":
-						oInp.innerHTML = "Touch started (" + event.touches[0].clientX + "," + event.touches[0].clientY + ")";
+						oInp.innerHTML = "Touch 开始 (" + event.touches[0].clientX + "," + event.touches[0].clientY + ")" + div;
+
 						break;
 					case "touchend":
-						oInp.innerHTML = "<br>Touch end (" + event.changedTouches[0].clientX + "," + event.changedTouches[0].clientY + ")";
+						oInp.innerHTML = "<br>Touch 结束 (" + event.changedTouches[0].clientX + "," + event.changedTouches[0].clientY + ")" + div;
 						break;
 					case "touchmove":
 						event.preventDefault();
-						oInp.innerHTML = "<br>Touch moved (" + event.touches[0].clientX + "," + event.touches[0].clientY + ")";
+						oInp.innerHTML = "<br>Touch 移动 (" + event.touches[0].clientX + "," + event.touches[0].clientY + ")" + div;
 						break;
 				}
 

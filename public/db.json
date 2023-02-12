@@ -132,24 +132,6 @@
       "folderId": "",
       "tagsIds": [],
       "description": null,
-      "name": "html",
-      "content": [
-        {
-          "label": "html",
-          "language": "html",
-          "value": ""
-        }
-      ],
-      "id": "46785624-8b59-4510-8ffd-ce625436b960",
-      "createdAt": 1676058718135,
-      "updatedAt": 1676058718135
-    },
-    {
-      "isDeleted": false,
-      "isFavorites": false,
-      "folderId": "",
-      "tagsIds": [],
-      "description": null,
       "name": "css",
       "content": [
         {
@@ -179,24 +161,6 @@
       "id": "0262c285-ae0c-4d4a-8dd4-570d3d21ceac",
       "createdAt": 1676086321069,
       "updatedAt": 1676086321069
-    },
-    {
-      "isDeleted": false,
-      "isFavorites": false,
-      "folderId": "",
-      "tagsIds": [],
-      "description": null,
-      "name": "javascript",
-      "content": [
-        {
-          "label": "javascript",
-          "language": "javascript",
-          "value": ""
-        }
-      ],
-      "id": "38d3dc69-d63e-4207-94b0-ff8e787d5a10",
-      "createdAt": 1676089367619,
-      "updatedAt": 1676089367619
     },
     {
       "isDeleted": false,
@@ -251,96 +215,6 @@
       "id": "6b29637d-29c9-4b88-8889-7edb53c558f6",
       "createdAt": 1676089387957,
       "updatedAt": 1676089387957
-    },
-    {
-      "isDeleted": false,
-      "isFavorites": false,
-      "folderId": "",
-      "tagsIds": [],
-      "description": null,
-      "name": "css",
-      "content": [
-        {
-          "label": "css",
-          "language": "css",
-          "value": ""
-        }
-      ],
-      "id": "19ec16ca-5a5a-4c3b-89b6-c12a42788146",
-      "createdAt": 1676089393363,
-      "updatedAt": 1676089393363
-    },
-    {
-      "isDeleted": false,
-      "isFavorites": false,
-      "folderId": "",
-      "tagsIds": [],
-      "description": null,
-      "name": "html",
-      "content": [
-        {
-          "label": "html",
-          "language": "html",
-          "value": ""
-        }
-      ],
-      "id": "05ac5d7d-71b5-41db-905a-54ed5dbba6dd",
-      "createdAt": 1676089395041,
-      "updatedAt": 1676089395041
-    },
-    {
-      "isDeleted": false,
-      "isFavorites": false,
-      "folderId": "",
-      "tagsIds": [],
-      "description": null,
-      "name": "html",
-      "content": [
-        {
-          "label": "html",
-          "language": "html",
-          "value": ""
-        }
-      ],
-      "id": "f54cb3d2-c745-417d-bebc-6ff12575a045",
-      "createdAt": 1676089474716,
-      "updatedAt": 1676089474716
-    },
-    {
-      "isDeleted": false,
-      "isFavorites": false,
-      "folderId": "",
-      "tagsIds": [],
-      "description": null,
-      "name": "css",
-      "content": [
-        {
-          "label": "css",
-          "language": "css",
-          "value": ""
-        }
-      ],
-      "id": "0ed6a9aa-fae4-4791-b124-ae489e234ddd",
-      "createdAt": 1676089759564,
-      "updatedAt": 1676089759564
-    },
-    {
-      "isDeleted": false,
-      "isFavorites": false,
-      "folderId": "",
-      "tagsIds": [],
-      "description": null,
-      "name": "javascript",
-      "content": [
-        {
-          "label": "javascript",
-          "language": "javascript",
-          "value": ""
-        }
-      ],
-      "id": "e22eac1c-f2e3-4060-b63d-bcf8c7d3b26e",
-      "createdAt": 1676089782043,
-      "updatedAt": 1676089782043
     }
   ]
 }
