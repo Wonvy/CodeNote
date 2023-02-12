@@ -1,0 +1,41 @@
+
+.hljs.hljs
+	background: transparent
+
+[contenteditable]:focus
+	outline: none
+
+@mixin nth-child($id,$color)
+	&:hover
+		&::before
+			opacity: 100
+		&::after
+			background: $color
+			width: 18px
+			height: 18px
+
+//折叠按钮
+@mixin foldingButton($symbol1,$symbol2)
+	&::after
+		position: absolute
+		display: flex
+		top: 45vh
+		right: -2.2em
+		width: 2.2em
+		height: 4em
+		color: #7f7f7f
+		background-color: rgb(56 56 56)
+		content: $symbol1 // ">"
+		transition: all 0.2s
+		cursor: pointer
+		border-radius: 0 5px 5px 0
+		align-items: center
+		justify-content: center
+	&:hover
+		&::after
+			color: #cacaca
+			right: -2.6em
+			width: 2.6em
+			content: $symbol2
+			background-color: rgb(80, 80, 80)
+			box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2)

@@ -1,0 +1,945 @@
+@use './components/theme'
+@import './components/reset'
+@import './components/base'
+@import './components/button'
+
+html,body
+	position: relative
+	width: 100%
+	height: 100%
+	background: #282828
+	caret-color: #fff
+	overflow: hidden
+
+// 
+#screen
+	position: absolute
+	display: flex
+	width: 100%
+	height: 100%
+	background-color: theme.$headerback
+	// opacity: 80%; 
+	// filter: blur(10px); 
+	z-index: -99
+	// visibility: hidden; 
+	// visibility: visible; 
+	transition: all 0.3s
+	flex-direction: column
+	align-items: center
+	justify-content: center
+	// cursor: not-allowed; 
+	// opacity: 100%; 
+	#article
+		display: flex
+		flex-direction: column
+		width: 980px
+		height: 85%
+		margin: 0
+		padding: 1.5em 2.5em 4em 2.5em
+		// overflow-y: auto
+		background-color: #222222
+		cursor: default
+		border-radius: 0.8em
+		@media screen and (max-width: 1024px)
+			width: 100%
+			height: 100%
+			box-sizing: border-box
+			padding: 1em
+		// transition: all 0.3s; 
+	.title
+		display: flex
+		align-items: center
+		justify-content: center
+		// background: transition; 
+		.left
+			display: flex
+			width: 100%
+			height: 3.5em
+			margin-bottom: 1em
+			align-items: center
+			img
+				height: 2em
+			h3
+				-webkit-user-modify: read-write-plaintext-only
+				font-family: "阿里妈妈数黑体 Bold"
+				padding-left: 0.5em
+				font-size: 2.1em
+				color: rgb(209,209,209)
+		.right
+			display: flex
+			position: relative
+			height: 100%
+			margin-right: 5px
+			align-items: center
+			justify-content: flex-end
+			i
+				position: relative
+				display: flex
+				width: 24px
+				height: 100%
+				align-items: center
+				justify-content: center
+				&::after
+					content: ''
+					background: #484848
+					width: 10px
+					height: 10px
+					border-radius: 5px
+					transition: all 0.2s
+					// background-color: transparent
+					cursor: pointer
+				&::before
+					position: absolute
+					width: 5em
+					height: 2em
+					border-radius: 1em
+					top: -2.3em
+					color: #b6b6b6
+					content: attr(tip)
+					font: normal bold	1.1em/2em "Microsoft YaHei"
+					background: #111
+					opacity: 0
+					text-align: center
+					transition: all 0.3s
+				&:nth-child(1)
+					@include nth-child(1,#28BF32)
+				&:nth-child(2)
+					@include nth-child(1,#F8D125)
+				&:nth-child(3)
+					@include nth-child(1,#EC6D4E)
+
+	.item-content
+		overflow: auto
+		height: 100%
+
+//
+#wrap
+	display: flex
+	height: 100%
+	overflow: hidden
+	transition: all 0.5s
+	&.mask
+		filter: blur(0.8em)
+
+//
+#menu
+	display: flex
+	position: relative
+	// overflow: hidden; 
+	// opacity: 0
+	width: 0px
+	height: 100%
+	// background-color: rgb(0, 0, 0); 
+	background-color: #2a2a2a
+	transition: all 0.5s
+	flex-direction: column
+	border-right: 1px solid rgba(117, 107, 107, 0)
+	@include foldingButton(">","▶")
+	&.header
+		flex: 2
+		color: #ffffff
+		background-color: #222
+		overflow: hidden
+	section
+		flex: 1
+		color: #ffffff
+		background-color: #222
+		overflow: hidden
+	ul
+		flex: 7
+		color: #ffffff
+		background-color: #222
+		overflow: hidden
+	&.on
+		width: 20em
+		opacity: 1
+
+//
+#preview-wrap
+	position: relative
+	width: 0
+	padding: 2em 0
+	background: #000
+	border-left: 1px solid rgba(117, 107, 107, 0)
+	transition: all 0.4s
+	// opacity: 0
+	.title
+		display: flex
+		align-items: center
+		justify-content: center
+		// transition: all 0.3s
+		// background: transition; 
+		.left
+			display: flex
+			width: 100%
+			height: 3.5em
+			margin-bottom: 1em
+			align-items: center
+			img
+				height: 2em
+			h3
+				font-family: "阿里妈妈数黑体 Bold"
+				padding-left: 0.5em
+				font-size: 2.1em
+				color: rgb(209,209,209)
+	&::after
+		position: absolute
+		display: flex
+		top: 45vh
+		left: -0.6em
+		width: 0.6em
+		height: 4em
+		color: #c5c5c5
+		background-color: rgb(60, 60, 60)
+		content: ">"
+		transition: all 0.2s
+		cursor: pointer
+		border-radius: 5px 0 0 5px
+		align-items: center
+		justify-content: center
+	&:hover
+		&::after
+			left: -3em
+			width: 3em
+			content: "<"
+			background-color: rgb(80, 80, 80)
+	&.on
+		width: 30%
+		padding: 2em
+		opacity: 1
+		background: #181818
+
+//
+#container-wrap
+	flex: 1
+	overflow: auto
+	// width: 30%
+	display: flex
+	flex-direction: column
+	background: #282828
+	align-items: center
+	// transition: all 2s; 
+	.nav
+		display: flex
+		height: 4.2em
+		// padding: 0 3em
+		width: 100%
+		// background-color: #2e2e2e; 
+		flex-direction: row
+		justify-content: space-between
+		align-items: flex-start
+		z-index: 99
+		transition: all 0.5s
+		// opacity: 0; 
+		&:hover
+			opacity: 1
+		ul.navul
+			display: flex
+			height: 100%
+			gap: 1.2em
+			flex-direction: row
+			align-items: center
+			li
+				cursor: pointer
+				// display: flex; 
+				// margin: 0.5em; 
+				// float: left; 
+				transition: all 0.2s
+				&:hover
+					padding-top: 1em
+					// background-color: #181818; 
+					img
+						width: 4em
+						height: 4em
+			img
+				width: 2.2em
+				height: 2.2em
+				transition: all 0.2s
+		dl
+			&.listview
+				// display: flex
+				position: relative
+				// flex-direction: column
+				// flex-wrap: nowrap
+				color: #767676
+				// align-items: flex-end
+				transition: all 0.3s
+				// background-color: #3c3c3c
+			dt
+				display: flex
+				width: 4em
+				height: 4.2em
+				align-items: center
+				justify-content: center
+				// background-color:
+				span
+					display: none
+				svg
+					fill: #676767
+			&:hover
+				// box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2)
+				dt
+					background-color: #363636
+				dd
+					box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2)
+					height: 3em
+					// background-color: #88c37a
+			dd
+				cursor: pointer
+				display: flex
+				flex-direction: row-reverse
+				justify-content: flex-end
+				align-items: center
+				left: 3em
+				width: 8em
+				height: 0
+				overflow: hidden
+				transition: all 0.3s
+				background-color: #363636
+				&:last-child
+					border-radius: 0 0 0.3em 0.3em
+				&:hover
+					color: #d2d2d2
+					background-color: #2b2b2b
+					svg
+						fill: #d2d2d2
+				svg
+					width: 4em
+					fill: #676767
+
+//
+#container.layout-grid
+	flex: 1
+	width: 80%
+	height: 100%
+	overflow: auto
+	padding: 3em
+	display: flex
+	gap: 2.2em
+	flex-wrap: wrap
+	align-content: flex-start
+	flex-direction: row
+	justify-content: center
+	align-items: center
+	.item
+		caret-color: #fff
+		flex: auto
+		display: flex
+		position: relative
+		flex-direction: column
+		min-width: 35em
+		max-width: 50%
+		min-height: 15em
+		max-height: 15em
+		height: 100%
+		border-radius: 0.5em
+		background-color: rgb(30 30 30)
+		transition: all 0.4s
+		box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.1)
+		&:hover
+			top: -0.3em
+			background-color: rgb(50, 50, 50)
+			box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2)
+		&:hover .title
+			.right i::after
+				background-color: #555
+				// top: -2.8em
+				// height: 0
+			h3
+				position: sticky
+		.title
+			display: flex
+			height: 2.8em
+			position: relative
+			align-items: center
+			border-radius: 0.5em 0.5em 0 0
+			background-color: #363636
+			//overflow: hidden;
+			justify-content: space-between
+			transition: all 0.5s
+			.left
+				display: flex
+				img
+					padding-left: 0.6em
+					height: 1.4em
+				h3
+					padding-left: 0.5em
+					font-size: 1.1em
+					font-weight: normal
+					color: rgb(173, 173, 173)
+			.right
+				display: flex
+				height: 100%
+				margin-right: 5px
+				align-items: center
+				justify-content: flex-end
+				i
+					position: relative
+					display: flex
+					width: 24px
+					height: 100%
+					align-items: center
+					justify-content: center
+					&::after
+						content: ''
+						width: 10px
+						height: 10px
+						border-radius: 5px
+						transition: all 0.2s
+						background-color: transparent
+						cursor: pointer
+					&::before
+						position: absolute
+						width: 5em
+						height: 2em
+						border-radius: 1em
+						top: -2.3em
+						color: #b6b6b6
+						content: attr(tip)
+						font: normal bold	1.1em/2em "Microsoft YaHei"
+						background: #111
+						opacity: 0
+						text-align: center
+						transition: all 0.3s
+		.item-content
+			height: 100%
+			color: #bbb
+			overflow: auto
+			padding: 1em 0 0 1em
+			pre
+				min-height: 10em
+				width: 100%
+				height: 100%
+				// overflow: hidden
+				code
+					padding: 0
+					min-height: 10em
+					width: 100%
+					height: 100%
+					span
+						&:hover
+							// background-color: #444
+						>span
+							transition: all 0.1s
+							&:hover
+								border-radius: 2px
+								// background-color: #000
+								font-size: 1.12em
+		&.on
+			.title
+				p.right
+					@mixin nth-child($id,$color)
+						&:hover
+							&::before
+								opacity: 100
+							&::after
+								background: $color
+								width: 18px
+								height: 18px
+					i:nth-child(1)
+						@include nth-child(1,#28BF32)
+					i:nth-child(2)
+						@include nth-child(1,#F8D125)
+					i:nth-child(3)
+						@include nth-child(1,#EC6D4E)
+		&.select
+			box-sizing: border-box
+			border: solid 2px #fff
+
+#container.layout-list
+	flex: 1
+	width: 80%
+	height: 100%
+	overflow: auto
+	padding: 3em
+	display: flex
+	column-gap: 2em
+	row-gap: 1em
+	flex-wrap: wrap
+	align-content: flex-start
+	flex-direction: row
+	justify-content: center
+	align-items: center
+	.item
+		flex: 0 40%
+		display: flex
+		position: relative
+		flex-direction: column
+		// min-width: 36em
+		height: 15em
+		width: 20%
+		height: 8em
+		// overflow: hidden
+		// overflow: auto
+		border-radius: 0.5em
+		background-color: rgb(45 45 45)
+		transition: all 0.4s
+		box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.1)
+		&:hover
+			top: -0.3em
+			background-color: rgb(50, 50, 50)
+			box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2)
+		&:hover .title
+			.right i::after
+				background-color: #555
+				// top: -2.8em
+				// height: 0
+			h3
+				color: transition
+		.title
+			display: flex
+			height: 2.8em
+			position: relative
+			align-items: center
+			border-radius: 0.5em 0.5em 0 0
+			background-color: #363636
+			//overflow: hidden;
+			justify-content: space-between
+			transition: all 0.5s
+			.left
+				display: flex
+				img
+					padding-left: 0.6em
+					height: 1.4em
+				h3
+					padding-left: 0.5em
+					font-size: 1.1em
+					font-weight: normal
+					color: rgb(173, 173, 173)
+			.right
+				display: flex
+				height: 100%
+				margin-right: 5px
+				align-items: center
+				justify-content: flex-end
+				i
+					position: relative
+					display: flex
+					width: 24px
+					height: 100%
+					align-items: center
+					justify-content: center
+					&::after
+						content: ''
+						width: 10px
+						height: 10px
+						border-radius: 5px
+						transition: all 0.2s
+						background-color: transparent
+						cursor: pointer
+					&::before
+						position: absolute
+						width: 5em
+						height: 2em
+						border-radius: 1em
+						top: -2.3em
+						color: #b6b6b6
+						content: attr(tip)
+						font: normal bold	1.1em/2em "Microsoft YaHei"
+						background: #111
+						opacity: 0
+						text-align: center
+						transition: all 0.3s
+		.item-content
+			height: 100%
+			overflow: hidden
+			pre
+				min-height: 10em
+				width: 100%
+				height: 100%
+				overflow: hidden
+				code
+					min-height: 10em
+					width: 100%
+					height: 100%
+					span
+						&:hover
+							// background-color: #444
+						>span
+							transition: all 0.1s
+							&:hover
+								border-radius: 2px
+								// background-color: #000
+								font-size: 1.12em
+		&.on
+			.title
+				p.right
+					@mixin nth-child($id,$color)
+						&:hover
+							&::before
+								opacity: 100
+							&::after
+								background: $color
+								width: 18px
+								height: 18px
+					i:nth-child(1)
+						@include nth-child(1,#28BF32)
+					i:nth-child(2)
+						@include nth-child(1,#F8D125)
+					i:nth-child(3)
+						@include nth-child(1,#EC6D4E)
+		&.select
+			box-sizing: border-box
+			border: solid 2px #fff
+
+#container.layout-card
+	flex: 1
+	width: 80%
+	height: 80%
+	overflow: auto
+	padding: 3em
+	display: flex
+	gap: 2.2em
+	flex-wrap: wrap
+	align-content: flex-start
+	flex-direction: row
+	justify-content: center
+	align-items: center
+	.item
+		// flex: auto
+		display: flex
+		position: relative
+		flex-direction: column
+		// min-width: 36em
+		height: 15em
+		width: 20em
+		height: 15em
+		// overflow: hidden
+		// overflow: auto
+		border-radius: 0.5em
+		background-color: rgb(45 45 45)
+		transition: all 0.4s
+		box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.1)
+		&:hover
+			top: -0.3em
+			background-color: rgb(50, 50, 50)
+			box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2)
+		&:hover .title
+			.right i::after
+				background-color: #555
+				// top: -2.8em
+				// height: 0
+			h3
+				color: transition
+		.title
+			display: flex
+			height: 2.8em
+			position: relative
+			align-items: center
+			border-radius: 0.5em 0.5em 0 0
+			background-color: #363636
+			//overflow: hidden;
+			justify-content: space-between
+			transition: all 0.5s
+			.left
+				display: flex
+				img
+					padding-left: 0.6em
+					height: 1.4em
+				h3
+					padding-left: 0.5em
+					font-size: 1.1em
+					font-weight: normal
+					color: rgb(173, 173, 173)
+			.right
+				display: flex
+				height: 100%
+				margin-right: 5px
+				align-items: center
+				justify-content: flex-end
+				i
+					position: relative
+					display: flex
+					width: 24px
+					height: 100%
+					align-items: center
+					justify-content: center
+					&::after
+						content: ''
+						width: 10px
+						height: 10px
+						border-radius: 5px
+						transition: all 0.2s
+						background-color: transparent
+						cursor: pointer
+					&::before
+						position: absolute
+						width: 5em
+						height: 2em
+						border-radius: 1em
+						top: -2.3em
+						color: #b6b6b6
+						content: attr(tip)
+						font: normal bold	1.1em/2em "Microsoft YaHei"
+						background: #111
+						opacity: 0
+						text-align: center
+						transition: all 0.3s
+		.item-content
+			height: 100%
+			overflow: hidden
+			pre
+				min-height: 10em
+				width: 100%
+				height: 100%
+				overflow: hidden
+				code
+					min-height: 10em
+					width: 100%
+					height: 100%
+					span
+						&:hover
+							// background-color: #444
+						>span
+							transition: all 0.1s
+							&:hover
+								border-radius: 2px
+								// background-color: #000
+								font-size: 1.12em
+		&.on
+			.title
+				p.right
+					@mixin nth-child($id,$color)
+						&:hover
+							&::before
+								opacity: 100
+							&::after
+								background: $color
+								width: 18px
+								height: 18px
+					i:nth-child(1)
+						@include nth-child(1,#28BF32)
+					i:nth-child(2)
+						@include nth-child(1,#F8D125)
+					i:nth-child(3)
+						@include nth-child(1,#EC6D4E)
+		&.select
+			box-sizing: border-box
+			border: solid 2px #fff
+
+#container.layout-flow
+	flex: 1
+	width: 80%
+	height: 100%
+	overflow: auto
+	padding: 3em
+	display: flex
+	width: 80%
+	flex-flow: row wrap
+	align-content: flex-start
+	transition: all 0.3s
+	// gap: 2.2em
+	// flex-wrap: wrap
+	// flex-direction: row
+	justify-content: center
+	// align-items: center
+	.item
+		margin: 1.1em
+		flex: 0 0 23%
+		display: flex
+		position: relative
+		flex-direction: column
+		// width: 30em
+		height: 36em
+		min-width: 15em
+		// max-height: 15em
+		// height: 100%
+		overflow: hidden
+		// overflow: auto
+		border-radius: 0.5em
+		background-color: rgb(45 45 45)
+		transition: all 0.4s
+		box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.1)
+		&:hover
+			top: -0.3em
+			background-color: rgb(50, 50, 50)
+			box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2)
+		&:hover .title
+			.right i::after
+				background-color: #555
+				// top: -2.8em
+				// height: 0
+			h3
+				color: transition
+		.title
+			display: flex
+			height: 2.8em
+			position: relative
+			align-items: center
+			border-radius: 0.5em 0.5em 0 0
+			background-color: #363636
+			//overflow: hidden;
+			justify-content: space-between
+			transition: all 0.5s
+			.left
+				display: flex
+				img
+					padding-left: 0.6em
+					height: 1.4em
+				h3
+					padding-left: 0.5em
+					font-size: 1.1em
+					font-weight: normal
+					color: rgb(173, 173, 173)
+			.right
+				display: flex
+				height: 100%
+				margin-right: 5px
+				align-items: center
+				justify-content: flex-end
+				i
+					position: relative
+					display: flex
+					width: 24px
+					height: 100%
+					align-items: center
+					justify-content: center
+					&::after
+						content: ''
+						width: 10px
+						height: 10px
+						border-radius: 5px
+						transition: all 0.2s
+						background-color: transparent
+						cursor: pointer
+					&::before
+						position: absolute
+						width: 5em
+						height: 2em
+						border-radius: 1em
+						top: -2.3em
+						color: #b6b6b6
+						content: attr(tip)
+						font: normal bold	1.1em/2em "Microsoft YaHei"
+						background: #111
+						opacity: 0
+						text-align: center
+						transition: all 0.3s
+		.item-content
+			height: 100%
+			overflow: hidden
+			pre
+				min-height: 10em
+				width: 100%
+				height: 100%
+				overflow: hidden
+				code
+					min-height: 10em
+					width: 100%
+					height: 100%
+					span
+						&:hover
+							// background-color: #444
+						>span
+							transition: all 0.1s
+							&:hover
+								border-radius: 2px
+								// background-color: #000
+								font-size: 1.12em
+		&.on
+			.title
+				p.right
+					@mixin nth-child($id,$color)
+						&:hover
+							&::before
+								opacity: 100
+							&::after
+								background: $color
+								width: 18px
+								height: 18px
+					i:nth-child(1)
+						@include nth-child(1,#28BF32)
+					i:nth-child(2)
+						@include nth-child(1,#F8D125)
+					i:nth-child(3)
+						@include nth-child(1,#EC6D4E)
+		&.select
+			box-sizing: border-box
+			border: solid 2px #fff
+
+//滚动条样式
+#article,#container,#article .item-content
+	&::-webkit-scrollbar
+		width: 1em
+		background: transparent
+		transition: all 1s
+	&::-webkit-scrollbar-track,&::-webkit-scrollbar-corner
+		background: transparent
+	&::-webkit-scrollbar-thumb
+		cursor: copy
+		border-radius: 1em
+		background-color: rgb(40, 40, 40)
+		&:hover
+			cursor: copy
+			background-color: rgb(80, 80, 80)
+
+#article .hljs.hljs
+	border-radius: 4px
+	background: rgb(30, 30, 30)
+
+code,.item-content
+	&::-webkit-scrollbar
+		cursor: pointer
+		width: 0.8em
+		height: 0.8em
+			// border-radius: 10px;
+		background: transparent
+		transition: all 1s
+	&::-webkit-scrollbar:hover
+		width: 0.8em
+		height: 0.8em
+	&::-webkit-scrollbar-track
+
+		// border-radius: 10px;
+		// box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+		background: transparent
+	&::-webkit-scrollbar-corner
+		background: transparent
+	&::-webkit-scrollbar-thumb
+
+		border-radius: 0.4em
+		background: transparent
+		transition: all 0.5s
+	&:hover::-webkit-scrollbar-thumb
+		border-radius: 0.4em
+		background: #4d4d4d
+	table
+		outline: none
+		// width: 100%
+		tbody
+			>tr
+				&:hover
+					background-color: rgb(66 66 66)
+
+.hljs-ln-n:before
+	// margin-right: 1em
+	padding-right: 0.8em
+	content: attr(data-line-number)
+
+td.hljs-ln-code
+	padding-left: 15px !important
+
+/* for block of numbers */
+.hljs-ln-numbers
+	text-align: right
+	// background-color: #5e5a56
+	// padding: 0
+	// min-width: 1.2em
+	// background: #000
+	border-right: 1px solid #444
+	// -webkit-touch-callout: none
+	// -webkit-user-select: none
+	// -khtml-user-select: none
+	// -moz-user-select: none
+	// -ms-user-select: none
+	// user-select: none
+	// text-align: center
+	color: #777
+	// vertical-align: top
+	// padding-right: 15px
+
+	/* your custom style here */
+
+/* for block of code */
+// .hljs-ln-code
+// 	padding-left: 3em

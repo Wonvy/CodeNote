@@ -1,0 +1,346 @@
+{
+  "snippets": [
+    {
+      "isDeleted": false,
+      "isFavorites": false,
+      "folderId": "",
+      "tagsIds": [],
+      "description": null,
+      "name": "SVG案例",
+      "content": [
+        {
+          "label": "SVG案例",
+          "language": "html",
+          "value": "<svg\n  xmlns=\"http://www.w3.org/2000/svg\"\n  viewBox=\"0 0 24 24\"\n  width=\"24\"\n  height=\"24\"\n>\n  <path fill=\"none\" d=\"M0 0h24v24H0z\" />\n\n  <path\n    d=\"M8 4h13v2H8V4zm-5-.5h3v3H3v-3zm0 7h3v3H3v-3zm0 7h3v3H3v-3zM8 11h13v2H8v-2zm0 7h13v2H8v-2z\"\n  />\n</svg>\n"
+        }
+      ],
+      "id": "3d124129-4b1c-452c-9fdf-a22ba9cc3805",
+      "createdAt": 1675980676109,
+      "updatedAt": 1675984525641
+    },
+    {
+      "isDeleted": false,
+      "isFavorites": false,
+      "folderId": "",
+      "tagsIds": [],
+      "description": null,
+      "name": "javascript",
+      "content": [
+        {
+          "label": "javascript",
+          "language": "javascript",
+          "value": "<!-- 显示代码 -->\n\n<div id=\"screen\">\n  <div id=\"article\">screen</div>\n</div>\n"
+        }
+      ],
+      "id": "9328fda9-e570-4d39-ac05-4c43028ebcdb",
+      "createdAt": 1675984427245,
+      "updatedAt": 1675984458498
+    },
+    {
+      "isDeleted": false,
+      "isFavorites": false,
+      "folderId": "",
+      "tagsIds": [],
+      "description": null,
+      "name": "html",
+      "content": [
+        {
+          "label": "html",
+          "language": "html",
+          "value": "<!DOCTYPE html>\n\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\" />\n\n    <link rel=\"stylesheet\" href=\"/css/reset.css\" />\n\n    <link rel=\"stylesheet\" href=\"./css/style.css\" />\n\n    <link rel=\"stylesheet\" href=\"/js/highlight/atom-one-dark.min.css\" />\n\n    <link rel=\"stylesheet\" href=\"/js/ulid.js\" />\n\n    <script src=\"/js/highlight/highlight.min.js\"></script>\n\n    <script src=\"/js/highlight/go.min.js\"></script>\n\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js\"></script>\n\n    <script src=\"https://unpkg.com/prettier@2.8.4/standalone.js\"></script>\n\n    <script src=\"https://unpkg.com/prettier@2.8.4/parser-html.js\"></script>\n\n    <!-- <script>\n\n\t\t\tconsole.log(\n\n\t\t\t\tprettier.format(\"type Query {hello: String }\", {\n\n\t\t\t\t\tparser: \"graphql\",\n\n\t\t\t\t\tplugins: prettierPlugins,\n\n\t\t\t\t})\n\n\t\t\t)\n\n\t\t</script> -->\n\n    <title>代码收纳盒</title>\n  </head>\n\n  <body>\n    <!-- 显示代码 -->\n\n    <div id=\"screen\">\n      <div id=\"article\">screen</div>\n    </div>\n\n    <!-- 主体 -->\n\n    <div id=\"wrap\">\n      <div id=\"menu\">\n        <div class=\"header\">header</div>\n\n        <section>section</section>\n\n        <ul id=\"menuli\">\n          <li>img</li>\n\n          <li>保存</li>\n\n          <li>3</li>\n\n          <li>4</li>\n\n          <li>5</li>\n        </ul>\n      </div>\n\n      <div id=\"container-wrap\">\n        <div class=\"nav\">\n          <ul class=\"logo\">\n            <li></li>\n          </ul>\n\n          <ul class=\"navul\">\n            <li><img src=\"icons/Ae.svg\" alt=\"Ae\" /></li>\n\n            <li><img src=\"./icons/PPT.svg\" alt=\"PPT\" /></li>\n\n            <li><img src=\"./icons/Python.svg\" alt=\"python\" /></li>\n\n            <li><img src=\"./icons/nodejs.svg\" alt=\"nodejs\" /></li>\n\n            <li><img src=\"./icons/shapr3d.svg\" alt=\"shapr3d\" /></li>\n\n            <li><img src=\"./icons/vscode.svg\" alt=\"vscode\" /></li>\n\n            <li><img src=\"./icons/Pr.svg\" alt=\"Pr\" /></li>\n\n            <li><img src=\"./icons/blender.svg\" alt=\"blender\" /></li>\n\n            <li><img src=\"./icons/C4D.svg\" alt=\"C4D\" /></li>\n\n            <li><img src=\"./icons/Ai.svg\" alt=\"Ai\" /></li>\n\n            <li><img src=\"./icons/JavaScript.svg\" alt=\"javascript\" /></li>\n\n            <li><img src=\"./icons/Obsidian.svg\" alt=\"obsidian\" /></li>\n\n            <li><img src=\"./icons/CSS.svg\" alt=\"CSS\" /></li>\n\n            <li><img src=\"./icons/Django.svg\" alt=\"django\" /></li>\n\n            <li><img src=\"./icons/HTML5.svg\" alt=\"html\" /></li>\n          </ul>\n\n          <dl class=\"listview\">\n            <dt>\n              <span class=\"current\">列表</span>\n\n              <svg\n                xmlns=\"http://www.w3.org/2000/svg\"\n                viewBox=\"0 0 24 24\"\n                width=\"24\"\n                height=\"24\"\n              >\n                <path fill=\"none\" d=\"M0 0h24v24H0z\" />\n\n                <path\n                  d=\"M8 4h13v2H8V4zm-5-.5h3v3H3v-3zm0 7h3v3H3v-3zm0 7h3v3H3v-3zM8 11h13v2H8v-2zm0 7h13v2H8v-2z\"\n                />\n              </svg>\n            </dt>\n\n            <dd class=\"btgrid\">\n              <span>网格</span>\n\n              <svg\n                xmlns=\"http://www.w3.org/2000/svg\"\n                viewBox=\"0 0 24 24\"\n                width=\"24\"\n                height=\"24\"\n              >\n                <path fill=\"none\" d=\"M0 0h24v24H0z\" />\n\n                <path\n                  d=\"M21 3a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h18zM11 13H4v6h7v-6zm9 0h-7v6h7v-6zm-9-8H4v6h7V5zm9 0h-7v6h7V5z\"\n                />\n              </svg>\n            </dd>\n\n            <dd class=\"btflow\">\n              <span>瀑布流</span>\n\n              <svg\n                xmlns=\"http://www.w3.org/2000/svg\"\n                viewBox=\"0 0 24 24\"\n                width=\"24\"\n                height=\"24\"\n              >\n                <path fill=\"none\" d=\"M0 0h24v24H0z\" />\n\n                <path\n                  d=\"M22 20a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h18a1 1 0 0 1 1 1v16zm-11-5H4v4h7v-4zm9-4h-7v8h7v-8zm-9-6H4v8h7V5zm9 0h-7v4h7V5z\"\n                />\n              </svg>\n            </dd>\n\n            <dd class=\"btlist\">\n              <span>列表</span>\n\n              <svg\n                xmlns=\"http://www.w3.org/2000/svg\"\n                viewBox=\"0 0 24 24\"\n                width=\"24\"\n                height=\"24\"\n              >\n                <path fill=\"none\" d=\"M0 0h24v24H0z\" />\n\n                <path\n                  d=\"M8 4h13v2H8V4zm-5-.5h3v3H3v-3zm0 7h3v3H3v-3zm0 7h3v3H3v-3zM8 11h13v2H8v-2zm0 7h13v2H8v-2z\"\n                />\n              </svg>\n            </dd>\n          </dl>\n        </div>\n\n        <div id=\"container\" class=\"layout-grid\"></div>\n      </div>\n\n      <div id=\"preview-wrap\">\n        <pre spellcheck=\"false\" contenteditable=\"false\">\n\n\t            <code class=\"language-html hljs language-xml\">1111</code>\n\n\t        </pre>\n      </div>\n    </div>\n\n    <script type=\"module\" src=\"./js/main.js\"></script>\n\n    <!-- ... Vue案例 ... -->\n\n    <!-- <div id=\"app\">{{ message }}</div>\n\n\t\t<script type=\"module\">\n\n\t\t\timport { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'\n\n\t \n\n\t\t\tcreateApp({\n\n\t\t\t\tdata() {\n\n\t\t\t\t\treturn {\n\n\t\t\t\t\t\tmessage: 'Vue引入网站案例 Vue!'\n\n\t\t\t\t\t}\n\n\t\t\t\t}\n\n\t\t\t}).mount('#app')\n\n\t\t</script> -->\n\n    <!-- ... React案例 ... -->\n\n    <!-- ... 其它 HTML ... -->\n\n    <!-- <div id=\"like_button_container\">11111111111111111111</div> -->\n\n    <!-- 加载 React。-->\n\n    <!-- 注意: 部署时，将 \"development.js\" 替换为 \"production.min.js\"。-->\n\n    <!-- <script src=\"https://unpkg.com/react@16/umd/react.development.js\" crossorigin></script> -->\n\n    <!-- <script src=\"https://unpkg.com/react-dom@16/umd/react-dom.development.js\" crossorigin></script> -->\n\n    <!-- 加载我们的 React 组件。-->\n\n    <!-- <script src=\"./js/react/like_button.js\"></script> -->\n  </body>\n</html>\n"
+        }
+      ],
+      "id": "1a641d6e-6811-4bb7-a1a3-78dd9d1937fa",
+      "createdAt": 1675986866506,
+      "updatedAt": 1676054757516
+    },
+    {
+      "isDeleted": false,
+      "isFavorites": false,
+      "folderId": "",
+      "tagsIds": [],
+      "description": null,
+      "name": "PPT",
+      "content": [
+        {
+          "label": "PPT",
+          "language": "PPT",
+          "value": "<svg\n  xmlns=\"http://www.w3.org/2000/svg\"\n  viewBox=\"0 0 24 24\"\n  width=\"24\"\n  height=\"24\"\n>\n  <path fill=\"none\" d=\"M0 0h24v24H0z\" />\n\n  <path\n    d=\"M8 4h13v2H8V4zm-5-.5h3v3H3v-3zm0 7h3v3H3v-3zm0 7h3v3H3v-3zM8 11h13v2H8v-2zm0 7h13v2H8v-2z\"\n  />\n</svg>\n"
+        }
+      ],
+      "id": "ac1b3026-80c0-4613-b66e-c10d3b26d93d",
+      "createdAt": 1675987029224,
+      "updatedAt": 1675987029224
+    },
+    {
+      "isDeleted": false,
+      "isFavorites": false,
+      "folderId": "",
+      "tagsIds": [],
+      "description": null,
+      "name": "shapr3d",
+      "content": [
+        {
+          "label": "shapr3d",
+          "language": "shapr3d",
+          "value": "<file_component\n  checkvalue=\"BE6C45EBE12FAF22A853426FE0DD7869\"\n  signature=\"MGUCMGo2RpS3zS68FuEhbTvV4ADVWvg75iG4vQFvMXlQD5YHK1EvPs+/cdZO5dJVAhX4swIxAI1qxjyZx+zVPwvQ0bNXHabtfBHC4sB8UXyeXrdxthfqKfa4Pr7o+qCWAS5i/wozRA==\"\n>\n      <filters>\n            <filter\n      appClientId=\"WeChatWin\"\n      appClientVerMin=\"0x63070601\"\n      sdkMin=\"210501\"\n      runtimeAbis=\"x86\"\n    />      </filters\n  >\n\n      <file md5=\"36368c338d7325f3b8b5e5cfdbd3e6ab\" length=\"1599368\"\n    >host\\wmpf_host_export.dll</file\n  >\n\n      <file md5=\"be1eb327460b1995cdc33ea8224404c8\" length=\"138632\"\n    >runtime\\ComponentVerification.dll</file\n  >\n\n      <file md5=\"5390881c6fe25bc38d58dbb916caa688\" length=\"1040264\"\n    >runtime\\ConfSdk.dll</file\n  >\n\n      <file md5=\"4fd9bc5c635f8fceb13190bda0276d36\" length=\"4113288\"\n    >runtime\\d3dcompiler_47.dll</file\n  >\n\n      <file md5=\"4d95029ce601379834d0789c7db52762\" length=\"1087880\"\n    >runtime\\dbghelp.dll</file\n  >\n\n      <file md5=\"91b814a7b8dead93fe51ad5ae881675a\" length=\"3153800\"\n    >runtime\\ffmpeg.dll</file\n  >\n\n      <file md5=\"d866d68e4a3eae8cdbfd5fc7a9967d20\" length=\"10284336\"\n    >runtime\\icudtl.dat</file\n  >\n\n      <file md5=\"a2c2adec9b5f99a94a7b889c1bba8bd5\" length=\"4197256\"\n    >runtime\\ilink_network.dll</file\n  >\n\n      <file md5=\"1d166d189eb1ea9ced3c872284392929\" length=\"364936\"\n    >runtime\\libEGL.dll</file\n  >\n\n      <file md5=\"2343bc89a5da24ddef841cce0ff0df9e\" length=\"5494664\"\n    >runtime\\libGLESv2.dll</file\n  >\n\n      <file md5=\"c243bc407f269bbaad5806aec7b5e973\" length=\"11006856\"\n    >runtime\\liteav.dll</file\n  >\n\n      <file md5=\"ab643679db4526009091e8a223091272\" length=\"285396\"\n    >runtime\\snapshot_blob.bin</file\n  >\n\n      <file md5=\"6c000417edec457c658a5141978e4b1c\" length=\"4374920\"\n    >runtime\\TRAE.dll</file\n  >\n\n      <file md5=\"91b55e475b6592a82fd53dbbc7e8e86f\" length=\"606128\"\n    >runtime\\v8_context_snapshot.bin</file\n  >\n\n      <file md5=\"633e38ab1b686596c32115c42fa5994d\" length=\"3425160\"\n    >runtime\\vk_swiftshader.dll</file\n  >\n\n      <file md5=\"8642dd3a87e2de6e991fae08458e302b\" length=\"106\"\n    >runtime\\vk_swiftshader_icd.json</file\n  >\n\n      <file md5=\"4793126d896693246ca5954a2f1051b5\" length=\"11718024\"\n    >runtime\\VoipEngine.dll</file\n  >\n\n      <file md5=\"08350b3a234c8dce7c73c4d4a486c7d9\" length=\"728456\"\n    >runtime\\vulkan-1.dll</file\n  >\n\n      <file md5=\"e3d26380bd1f3b11d06ee8c29510fb19\" length=\"116249480\"\n    >runtime\\WeChatAppEx.exe</file\n  >\n\n      <file md5=\"867103ecde560ab3453305275680f62d\" length=\"985832\"\n    >runtime\\wmpf_100_percent.pak</file\n  >\n\n      <file md5=\"bf04370a593654c2914bf8bd2afdbab7\" length=\"1188469\"\n    >runtime\\wmpf_200_percent.pak</file\n  >\n\n      <file md5=\"dcd9ae970ac05d95c109ebf0a2bb3af1\" length=\"11806226\"\n    >runtime\\wmpf_resources.pak</file\n  >\n\n      <file md5=\"8b6e5e33b849d6e19659b0d34d175c52\" length=\"4578184\"\n    >runtime\\WXAMSDK.dll</file\n  >\n\n      <file md5=\"ba17062c7ae30d3604fe77edfdca86bb\" length=\"613768\"\n    >runtime\\xweb_liveplayer.dll</file\n  >\n\n      <file md5=\"476ae647ab4daa3b0d7a8dd11a3e851d\" length=\"105149\"\n    >runtime\\locales\\en-US.pak</file\n  >\n\n      <file md5=\"d4c8179c15a02afcc054acda0d0dd6f9\" length=\"106253\"\n    >runtime\\locales\\zh-CN.pak</file\n  >\n\n      <file md5=\"8ac51aabfd5c4b487f23232bc35cef6b\" length=\"374152\"\n    >runtime\\swiftshader\\libEGL.dll</file\n  >\n\n      <file md5=\"716554ba5f9d9b441a6efda9aae0b62b\" length=\"2470280\"\n    >runtime\\swiftshader\\libGLESv2.dll</file\n  >\n</file_component>\n"
+        }
+      ],
+      "id": "364e3b23-9398-458b-8ef2-bddce1676466",
+      "createdAt": 1676005591975,
+      "updatedAt": 1676052055516
+    },
+    {
+      "isDeleted": false,
+      "isFavorites": false,
+      "folderId": "",
+      "tagsIds": [],
+      "description": null,
+      "name": "格式化代码",
+      "content": [
+        {
+          "label": "格式化代码",
+          "language": "javascript",
+          "value": "// 格式化代码\n\nfunction codeformat(code, language) {}\n"
+        }
+      ],
+      "id": "5c7e438c-dd0c-4867-82c6-3e978a0b5c83",
+      "createdAt": 1676053677626,
+      "updatedAt": 1676086290149
+    },
+    {
+      "isDeleted": false,
+      "isFavorites": false,
+      "folderId": "",
+      "tagsIds": [],
+      "description": null,
+      "name": "css",
+      "content": [
+        {
+          "label": "css",
+          "language": "css",
+          "value": "body {\n  background-color: #d0e4fe;\n}\n\nh1 {\n  color: orange;\n\n  text-align: center;\n}\n\np {\n  font-family: \"Times New Roman\";\n\n  font-size: 20px;\n}\n"
+        }
+      ],
+      "id": "37c273a7-e85b-414a-8892-9f5bab1cba27",
+      "createdAt": 1676053898653,
+      "updatedAt": 1676059911132
+    },
+    {
+      "isDeleted": false,
+      "isFavorites": false,
+      "folderId": "",
+      "tagsIds": [],
+      "description": null,
+      "name": "html",
+      "content": [
+        {
+          "label": "html",
+          "language": "html",
+          "value": ""
+        }
+      ],
+      "id": "46785624-8b59-4510-8ffd-ce625436b960",
+      "createdAt": 1676058718135,
+      "updatedAt": 1676058718135
+    },
+    {
+      "isDeleted": false,
+      "isFavorites": false,
+      "folderId": "",
+      "tagsIds": [],
+      "description": null,
+      "name": "css",
+      "content": [
+        {
+          "label": "css",
+          "language": "css",
+          "value": "body {\n  background-color: #d0e4fe;\n}\n\nh1 {\n  color: orange;\n\n  text-align: center;\n}\n\np {\n  font-family: \"Times New Roman\";\n\n  font-size: 20px;\n}\n"
+        }
+      ],
+      "id": "d50d05b7-78c7-47dc-8f30-3880921a87cb",
+      "createdAt": 1676059931487,
+      "updatedAt": 1676059931487
+    },
+    {
+      "isDeleted": false,
+      "isFavorites": false,
+      "folderId": "",
+      "tagsIds": [],
+      "description": null,
+      "name": "html456",
+      "content": [
+        {
+          "label": "html456",
+          "language": "html",
+          "value": ""
+        }
+      ],
+      "id": "0262c285-ae0c-4d4a-8dd4-570d3d21ceac",
+      "createdAt": 1676086321069,
+      "updatedAt": 1676086321069
+    },
+    {
+      "isDeleted": false,
+      "isFavorites": false,
+      "folderId": "",
+      "tagsIds": [],
+      "description": null,
+      "name": "javascript",
+      "content": [
+        {
+          "label": "javascript",
+          "language": "javascript",
+          "value": ""
+        }
+      ],
+      "id": "38d3dc69-d63e-4207-94b0-ff8e787d5a10",
+      "createdAt": 1676089367619,
+      "updatedAt": 1676089367619
+    },
+    {
+      "isDeleted": false,
+      "isFavorites": false,
+      "folderId": "",
+      "tagsIds": [],
+      "description": null,
+      "name": "html",
+      "content": [
+        {
+          "label": "html",
+          "language": "html",
+          "value": ""
+        }
+      ],
+      "id": "e9a8f9e5-5c6e-4bdf-b096-6fa8d6d997d8",
+      "createdAt": 1676089383017,
+      "updatedAt": 1676089383017
+    },
+    {
+      "isDeleted": false,
+      "isFavorites": false,
+      "folderId": "",
+      "tagsIds": [],
+      "description": null,
+      "name": "html",
+      "content": [
+        {
+          "label": "html",
+          "language": "html",
+          "value": ""
+        }
+      ],
+      "id": "982a631f-20c2-46a0-91ca-3c6d11638e9c",
+      "createdAt": 1676089384801,
+      "updatedAt": 1676089384801
+    },
+    {
+      "isDeleted": false,
+      "isFavorites": false,
+      "folderId": "",
+      "tagsIds": [],
+      "description": null,
+      "name": "html",
+      "content": [
+        {
+          "label": "html",
+          "language": "html",
+          "value": ""
+        }
+      ],
+      "id": "6b29637d-29c9-4b88-8889-7edb53c558f6",
+      "createdAt": 1676089387957,
+      "updatedAt": 1676089387957
+    },
+    {
+      "isDeleted": false,
+      "isFavorites": false,
+      "folderId": "",
+      "tagsIds": [],
+      "description": null,
+      "name": "css",
+      "content": [
+        {
+          "label": "css",
+          "language": "css",
+          "value": ""
+        }
+      ],
+      "id": "19ec16ca-5a5a-4c3b-89b6-c12a42788146",
+      "createdAt": 1676089393363,
+      "updatedAt": 1676089393363
+    },
+    {
+      "isDeleted": false,
+      "isFavorites": false,
+      "folderId": "",
+      "tagsIds": [],
+      "description": null,
+      "name": "html",
+      "content": [
+        {
+          "label": "html",
+          "language": "html",
+          "value": ""
+        }
+      ],
+      "id": "05ac5d7d-71b5-41db-905a-54ed5dbba6dd",
+      "createdAt": 1676089395041,
+      "updatedAt": 1676089395041
+    },
+    {
+      "isDeleted": false,
+      "isFavorites": false,
+      "folderId": "",
+      "tagsIds": [],
+      "description": null,
+      "name": "html",
+      "content": [
+        {
+          "label": "html",
+          "language": "html",
+          "value": ""
+        }
+      ],
+      "id": "f54cb3d2-c745-417d-bebc-6ff12575a045",
+      "createdAt": 1676089474716,
+      "updatedAt": 1676089474716
+    },
+    {
+      "isDeleted": false,
+      "isFavorites": false,
+      "folderId": "",
+      "tagsIds": [],
+      "description": null,
+      "name": "css",
+      "content": [
+        {
+          "label": "css",
+          "language": "css",
+          "value": ""
+        }
+      ],
+      "id": "0ed6a9aa-fae4-4791-b124-ae489e234ddd",
+      "createdAt": 1676089759564,
+      "updatedAt": 1676089759564
+    },
+    {
+      "isDeleted": false,
+      "isFavorites": false,
+      "folderId": "",
+      "tagsIds": [],
+      "description": null,
+      "name": "javascript",
+      "content": [
+        {
+          "label": "javascript",
+          "language": "javascript",
+          "value": ""
+        }
+      ],
+      "id": "e22eac1c-f2e3-4060-b63d-bcf8c7d3b26e",
+      "createdAt": 1676089782043,
+      "updatedAt": 1676089782043
+    }
+  ]
+}

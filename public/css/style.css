@@ -1,0 +1,1042 @@
+@charset "UTF-8";
+.hljs.hljs {
+  background: transparent;
+}
+
+[contenteditable]:focus {
+  outline: none;
+}
+
+html, body {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #282828;
+  caret-color: #fff;
+  overflow: hidden;
+}
+
+#screen {
+  position: absolute;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: -99;
+  transition: all 0.3s;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+#screen #article {
+  display: flex;
+  flex-direction: column;
+  width: 980px;
+  height: 85%;
+  margin: 0;
+  padding: 1.5em 2.5em 4em 2.5em;
+  background-color: #222222;
+  cursor: default;
+  border-radius: 0.8em;
+}
+@media screen and (max-width: 1024px) {
+  #screen #article {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 1em;
+  }
+}
+#screen .title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#screen .title .left {
+  display: flex;
+  width: 100%;
+  height: 3.5em;
+  margin-bottom: 1em;
+  align-items: center;
+}
+#screen .title .left img {
+  height: 2em;
+}
+#screen .title .left h3 {
+  -webkit-user-modify: read-write-plaintext-only;
+  font-family: "阿里妈妈数黑体 Bold";
+  padding-left: 0.5em;
+  font-size: 2.1em;
+  color: rgb(209, 209, 209);
+}
+#screen .title .right {
+  display: flex;
+  position: relative;
+  height: 100%;
+  margin-right: 5px;
+  align-items: center;
+  justify-content: flex-end;
+}
+#screen .title .right i {
+  position: relative;
+  display: flex;
+  width: 24px;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+#screen .title .right i::after {
+  content: "";
+  background: #484848;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+#screen .title .right i::before {
+  position: absolute;
+  width: 5em;
+  height: 2em;
+  border-radius: 1em;
+  top: -2.3em;
+  color: #b6b6b6;
+  content: attr(tip);
+  font: normal bold 1.1em/2em "Microsoft YaHei";
+  background: #111;
+  opacity: 0;
+  text-align: center;
+  transition: all 0.3s;
+}
+#screen .title .right i:nth-child(1):hover::before {
+  opacity: 100;
+}
+#screen .title .right i:nth-child(1):hover::after {
+  background: #28BF32;
+  width: 18px;
+  height: 18px;
+}
+#screen .title .right i:nth-child(2):hover::before {
+  opacity: 100;
+}
+#screen .title .right i:nth-child(2):hover::after {
+  background: #F8D125;
+  width: 18px;
+  height: 18px;
+}
+#screen .title .right i:nth-child(3):hover::before {
+  opacity: 100;
+}
+#screen .title .right i:nth-child(3):hover::after {
+  background: #EC6D4E;
+  width: 18px;
+  height: 18px;
+}
+#screen .item-content {
+  overflow: auto;
+  height: 100%;
+}
+
+#wrap {
+  display: flex;
+  height: 100%;
+  overflow: hidden;
+  transition: all 0.5s;
+}
+#wrap.mask {
+  filter: blur(0.8em);
+}
+
+#menu {
+  display: flex;
+  position: relative;
+  width: 0px;
+  height: 100%;
+  background-color: #2a2a2a;
+  transition: all 0.5s;
+  flex-direction: column;
+  border-right: 1px solid rgba(117, 107, 107, 0);
+}
+#menu::after {
+  position: absolute;
+  display: flex;
+  top: 45vh;
+  right: -2.2em;
+  width: 2.2em;
+  height: 4em;
+  color: #7f7f7f;
+  background-color: rgb(56, 56, 56);
+  content: ">";
+  transition: all 0.2s;
+  cursor: pointer;
+  border-radius: 0 5px 5px 0;
+  align-items: center;
+  justify-content: center;
+}
+#menu:hover::after {
+  color: #cacaca;
+  right: -2.6em;
+  width: 2.6em;
+  content: "▶";
+  background-color: rgb(80, 80, 80);
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
+}
+#menu.header {
+  flex: 2;
+  color: #ffffff;
+  background-color: #222;
+  overflow: hidden;
+}
+#menu section {
+  flex: 1;
+  color: #ffffff;
+  background-color: #222;
+  overflow: hidden;
+}
+#menu ul {
+  flex: 7;
+  color: #ffffff;
+  background-color: #222;
+  overflow: hidden;
+}
+#menu.on {
+  width: 20em;
+  opacity: 1;
+}
+
+#preview-wrap {
+  position: relative;
+  width: 0;
+  padding: 2em 0;
+  background: #000;
+  border-left: 1px solid rgba(117, 107, 107, 0);
+  transition: all 0.4s;
+}
+#preview-wrap .title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#preview-wrap .title .left {
+  display: flex;
+  width: 100%;
+  height: 3.5em;
+  margin-bottom: 1em;
+  align-items: center;
+}
+#preview-wrap .title .left img {
+  height: 2em;
+}
+#preview-wrap .title .left h3 {
+  font-family: "阿里妈妈数黑体 Bold";
+  padding-left: 0.5em;
+  font-size: 2.1em;
+  color: rgb(209, 209, 209);
+}
+#preview-wrap::after {
+  position: absolute;
+  display: flex;
+  top: 45vh;
+  left: -0.6em;
+  width: 0.6em;
+  height: 4em;
+  color: #c5c5c5;
+  background-color: rgb(60, 60, 60);
+  content: ">";
+  transition: all 0.2s;
+  cursor: pointer;
+  border-radius: 5px 0 0 5px;
+  align-items: center;
+  justify-content: center;
+}
+#preview-wrap:hover::after {
+  left: -3em;
+  width: 3em;
+  content: "<";
+  background-color: rgb(80, 80, 80);
+}
+#preview-wrap.on {
+  width: 30%;
+  padding: 2em;
+  opacity: 1;
+  background: #181818;
+}
+
+#container-wrap {
+  flex: 1;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  background: #282828;
+  align-items: center;
+}
+#container-wrap .nav {
+  display: flex;
+  height: 4.2em;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  z-index: 99;
+  transition: all 0.5s;
+}
+#container-wrap .nav:hover {
+  opacity: 1;
+}
+#container-wrap .nav ul.navul {
+  display: flex;
+  height: 100%;
+  gap: 1.2em;
+  flex-direction: row;
+  align-items: center;
+}
+#container-wrap .nav ul.navul li {
+  cursor: pointer;
+  transition: all 0.2s;
+}
+#container-wrap .nav ul.navul li:hover {
+  padding-top: 1em;
+}
+#container-wrap .nav ul.navul li:hover img {
+  width: 4em;
+  height: 4em;
+}
+#container-wrap .nav ul.navul img {
+  width: 2.2em;
+  height: 2.2em;
+  transition: all 0.2s;
+}
+#container-wrap .nav dl.listview {
+  position: relative;
+  color: #767676;
+  transition: all 0.3s;
+}
+#container-wrap .nav dl dt {
+  display: flex;
+  width: 4em;
+  height: 4.2em;
+  align-items: center;
+  justify-content: center;
+}
+#container-wrap .nav dl dt span {
+  display: none;
+}
+#container-wrap .nav dl dt svg {
+  fill: #676767;
+}
+#container-wrap .nav dl:hover dt {
+  background-color: #363636;
+}
+#container-wrap .nav dl:hover dd {
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
+  height: 3em;
+}
+#container-wrap .nav dl dd {
+  cursor: pointer;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  align-items: center;
+  left: 3em;
+  width: 8em;
+  height: 0;
+  overflow: hidden;
+  transition: all 0.3s;
+  background-color: #363636;
+}
+#container-wrap .nav dl dd:last-child {
+  border-radius: 0 0 0.3em 0.3em;
+}
+#container-wrap .nav dl dd:hover {
+  color: #d2d2d2;
+  background-color: #2b2b2b;
+}
+#container-wrap .nav dl dd:hover svg {
+  fill: #d2d2d2;
+}
+#container-wrap .nav dl dd svg {
+  width: 4em;
+  fill: #676767;
+}
+
+#container.layout-grid {
+  flex: 1;
+  width: 80%;
+  height: 100%;
+  overflow: auto;
+  padding: 3em;
+  display: flex;
+  gap: 2.2em;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+#container.layout-grid .item {
+  caret-color: #fff;
+  flex: auto;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  min-width: 35em;
+  max-width: 50%;
+  min-height: 15em;
+  max-height: 15em;
+  height: 100%;
+  border-radius: 0.5em;
+  background-color: rgb(30, 30, 30);
+  transition: all 0.4s;
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.1);
+}
+#container.layout-grid .item:hover {
+  top: -0.3em;
+  background-color: rgb(50, 50, 50);
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
+}
+#container.layout-grid .item:hover .title .right i::after {
+  background-color: #555;
+}
+#container.layout-grid .item:hover .title h3 {
+  position: sticky;
+}
+#container.layout-grid .item .title {
+  display: flex;
+  height: 2.8em;
+  position: relative;
+  align-items: center;
+  border-radius: 0.5em 0.5em 0 0;
+  background-color: #363636;
+  justify-content: space-between;
+  transition: all 0.5s;
+}
+#container.layout-grid .item .title .left {
+  display: flex;
+}
+#container.layout-grid .item .title .left img {
+  padding-left: 0.6em;
+  height: 1.4em;
+}
+#container.layout-grid .item .title .left h3 {
+  padding-left: 0.5em;
+  font-size: 1.1em;
+  font-weight: normal;
+  color: rgb(173, 173, 173);
+}
+#container.layout-grid .item .title .right {
+  display: flex;
+  height: 100%;
+  margin-right: 5px;
+  align-items: center;
+  justify-content: flex-end;
+}
+#container.layout-grid .item .title .right i {
+  position: relative;
+  display: flex;
+  width: 24px;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+#container.layout-grid .item .title .right i::after {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  transition: all 0.2s;
+  background-color: transparent;
+  cursor: pointer;
+}
+#container.layout-grid .item .title .right i::before {
+  position: absolute;
+  width: 5em;
+  height: 2em;
+  border-radius: 1em;
+  top: -2.3em;
+  color: #b6b6b6;
+  content: attr(tip);
+  font: normal bold 1.1em/2em "Microsoft YaHei";
+  background: #111;
+  opacity: 0;
+  text-align: center;
+  transition: all 0.3s;
+}
+#container.layout-grid .item .item-content {
+  height: 100%;
+  color: #bbb;
+  overflow: auto;
+  padding: 1em 0 0 1em;
+}
+#container.layout-grid .item .item-content pre {
+  min-height: 10em;
+  width: 100%;
+  height: 100%;
+}
+#container.layout-grid .item .item-content pre code {
+  padding: 0;
+  min-height: 10em;
+  width: 100%;
+  height: 100%;
+}
+#container.layout-grid .item .item-content pre code span > span {
+  transition: all 0.1s;
+}
+#container.layout-grid .item .item-content pre code span > span:hover {
+  border-radius: 2px;
+  font-size: 1.12em;
+}
+#container.layout-grid .item.on .title p.right i:nth-child(1):hover::before {
+  opacity: 100;
+}
+#container.layout-grid .item.on .title p.right i:nth-child(1):hover::after {
+  background: #28BF32;
+  width: 18px;
+  height: 18px;
+}
+#container.layout-grid .item.on .title p.right i:nth-child(2):hover::before {
+  opacity: 100;
+}
+#container.layout-grid .item.on .title p.right i:nth-child(2):hover::after {
+  background: #F8D125;
+  width: 18px;
+  height: 18px;
+}
+#container.layout-grid .item.on .title p.right i:nth-child(3):hover::before {
+  opacity: 100;
+}
+#container.layout-grid .item.on .title p.right i:nth-child(3):hover::after {
+  background: #EC6D4E;
+  width: 18px;
+  height: 18px;
+}
+#container.layout-grid .item.select {
+  box-sizing: border-box;
+  border: solid 2px #fff;
+}
+
+#container.layout-list {
+  flex: 1;
+  width: 80%;
+  height: 100%;
+  overflow: auto;
+  padding: 3em;
+  display: flex;
+  column-gap: 2em;
+  row-gap: 1em;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+#container.layout-list .item {
+  flex: 0 40%;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  height: 15em;
+  width: 20%;
+  height: 8em;
+  border-radius: 0.5em;
+  background-color: rgb(45, 45, 45);
+  transition: all 0.4s;
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.1);
+}
+#container.layout-list .item:hover {
+  top: -0.3em;
+  background-color: rgb(50, 50, 50);
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
+}
+#container.layout-list .item:hover .title .right i::after {
+  background-color: #555;
+}
+#container.layout-list .item:hover .title h3 {
+  color: transition;
+}
+#container.layout-list .item .title {
+  display: flex;
+  height: 2.8em;
+  position: relative;
+  align-items: center;
+  border-radius: 0.5em 0.5em 0 0;
+  background-color: #363636;
+  justify-content: space-between;
+  transition: all 0.5s;
+}
+#container.layout-list .item .title .left {
+  display: flex;
+}
+#container.layout-list .item .title .left img {
+  padding-left: 0.6em;
+  height: 1.4em;
+}
+#container.layout-list .item .title .left h3 {
+  padding-left: 0.5em;
+  font-size: 1.1em;
+  font-weight: normal;
+  color: rgb(173, 173, 173);
+}
+#container.layout-list .item .title .right {
+  display: flex;
+  height: 100%;
+  margin-right: 5px;
+  align-items: center;
+  justify-content: flex-end;
+}
+#container.layout-list .item .title .right i {
+  position: relative;
+  display: flex;
+  width: 24px;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+#container.layout-list .item .title .right i::after {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  transition: all 0.2s;
+  background-color: transparent;
+  cursor: pointer;
+}
+#container.layout-list .item .title .right i::before {
+  position: absolute;
+  width: 5em;
+  height: 2em;
+  border-radius: 1em;
+  top: -2.3em;
+  color: #b6b6b6;
+  content: attr(tip);
+  font: normal bold 1.1em/2em "Microsoft YaHei";
+  background: #111;
+  opacity: 0;
+  text-align: center;
+  transition: all 0.3s;
+}
+#container.layout-list .item .item-content {
+  height: 100%;
+  overflow: hidden;
+}
+#container.layout-list .item .item-content pre {
+  min-height: 10em;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+#container.layout-list .item .item-content pre code {
+  min-height: 10em;
+  width: 100%;
+  height: 100%;
+}
+#container.layout-list .item .item-content pre code span > span {
+  transition: all 0.1s;
+}
+#container.layout-list .item .item-content pre code span > span:hover {
+  border-radius: 2px;
+  font-size: 1.12em;
+}
+#container.layout-list .item.on .title p.right i:nth-child(1):hover::before {
+  opacity: 100;
+}
+#container.layout-list .item.on .title p.right i:nth-child(1):hover::after {
+  background: #28BF32;
+  width: 18px;
+  height: 18px;
+}
+#container.layout-list .item.on .title p.right i:nth-child(2):hover::before {
+  opacity: 100;
+}
+#container.layout-list .item.on .title p.right i:nth-child(2):hover::after {
+  background: #F8D125;
+  width: 18px;
+  height: 18px;
+}
+#container.layout-list .item.on .title p.right i:nth-child(3):hover::before {
+  opacity: 100;
+}
+#container.layout-list .item.on .title p.right i:nth-child(3):hover::after {
+  background: #EC6D4E;
+  width: 18px;
+  height: 18px;
+}
+#container.layout-list .item.select {
+  box-sizing: border-box;
+  border: solid 2px #fff;
+}
+
+#container.layout-card {
+  flex: 1;
+  width: 80%;
+  height: 80%;
+  overflow: auto;
+  padding: 3em;
+  display: flex;
+  gap: 2.2em;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+#container.layout-card .item {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  height: 15em;
+  width: 20em;
+  height: 15em;
+  border-radius: 0.5em;
+  background-color: rgb(45, 45, 45);
+  transition: all 0.4s;
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.1);
+}
+#container.layout-card .item:hover {
+  top: -0.3em;
+  background-color: rgb(50, 50, 50);
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
+}
+#container.layout-card .item:hover .title .right i::after {
+  background-color: #555;
+}
+#container.layout-card .item:hover .title h3 {
+  color: transition;
+}
+#container.layout-card .item .title {
+  display: flex;
+  height: 2.8em;
+  position: relative;
+  align-items: center;
+  border-radius: 0.5em 0.5em 0 0;
+  background-color: #363636;
+  justify-content: space-between;
+  transition: all 0.5s;
+}
+#container.layout-card .item .title .left {
+  display: flex;
+}
+#container.layout-card .item .title .left img {
+  padding-left: 0.6em;
+  height: 1.4em;
+}
+#container.layout-card .item .title .left h3 {
+  padding-left: 0.5em;
+  font-size: 1.1em;
+  font-weight: normal;
+  color: rgb(173, 173, 173);
+}
+#container.layout-card .item .title .right {
+  display: flex;
+  height: 100%;
+  margin-right: 5px;
+  align-items: center;
+  justify-content: flex-end;
+}
+#container.layout-card .item .title .right i {
+  position: relative;
+  display: flex;
+  width: 24px;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+#container.layout-card .item .title .right i::after {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  transition: all 0.2s;
+  background-color: transparent;
+  cursor: pointer;
+}
+#container.layout-card .item .title .right i::before {
+  position: absolute;
+  width: 5em;
+  height: 2em;
+  border-radius: 1em;
+  top: -2.3em;
+  color: #b6b6b6;
+  content: attr(tip);
+  font: normal bold 1.1em/2em "Microsoft YaHei";
+  background: #111;
+  opacity: 0;
+  text-align: center;
+  transition: all 0.3s;
+}
+#container.layout-card .item .item-content {
+  height: 100%;
+  overflow: hidden;
+}
+#container.layout-card .item .item-content pre {
+  min-height: 10em;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+#container.layout-card .item .item-content pre code {
+  min-height: 10em;
+  width: 100%;
+  height: 100%;
+}
+#container.layout-card .item .item-content pre code span > span {
+  transition: all 0.1s;
+}
+#container.layout-card .item .item-content pre code span > span:hover {
+  border-radius: 2px;
+  font-size: 1.12em;
+}
+#container.layout-card .item.on .title p.right i:nth-child(1):hover::before {
+  opacity: 100;
+}
+#container.layout-card .item.on .title p.right i:nth-child(1):hover::after {
+  background: #28BF32;
+  width: 18px;
+  height: 18px;
+}
+#container.layout-card .item.on .title p.right i:nth-child(2):hover::before {
+  opacity: 100;
+}
+#container.layout-card .item.on .title p.right i:nth-child(2):hover::after {
+  background: #F8D125;
+  width: 18px;
+  height: 18px;
+}
+#container.layout-card .item.on .title p.right i:nth-child(3):hover::before {
+  opacity: 100;
+}
+#container.layout-card .item.on .title p.right i:nth-child(3):hover::after {
+  background: #EC6D4E;
+  width: 18px;
+  height: 18px;
+}
+#container.layout-card .item.select {
+  box-sizing: border-box;
+  border: solid 2px #fff;
+}
+
+#container.layout-flow {
+  flex: 1;
+  width: 80%;
+  height: 100%;
+  overflow: auto;
+  padding: 3em;
+  display: flex;
+  width: 80%;
+  flex-flow: row wrap;
+  align-content: flex-start;
+  transition: all 0.3s;
+  justify-content: center;
+}
+#container.layout-flow .item {
+  margin: 1.1em;
+  flex: 0 0 23%;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  height: 36em;
+  min-width: 15em;
+  overflow: hidden;
+  border-radius: 0.5em;
+  background-color: rgb(45, 45, 45);
+  transition: all 0.4s;
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.1);
+}
+#container.layout-flow .item:hover {
+  top: -0.3em;
+  background-color: rgb(50, 50, 50);
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
+}
+#container.layout-flow .item:hover .title .right i::after {
+  background-color: #555;
+}
+#container.layout-flow .item:hover .title h3 {
+  color: transition;
+}
+#container.layout-flow .item .title {
+  display: flex;
+  height: 2.8em;
+  position: relative;
+  align-items: center;
+  border-radius: 0.5em 0.5em 0 0;
+  background-color: #363636;
+  justify-content: space-between;
+  transition: all 0.5s;
+}
+#container.layout-flow .item .title .left {
+  display: flex;
+}
+#container.layout-flow .item .title .left img {
+  padding-left: 0.6em;
+  height: 1.4em;
+}
+#container.layout-flow .item .title .left h3 {
+  padding-left: 0.5em;
+  font-size: 1.1em;
+  font-weight: normal;
+  color: rgb(173, 173, 173);
+}
+#container.layout-flow .item .title .right {
+  display: flex;
+  height: 100%;
+  margin-right: 5px;
+  align-items: center;
+  justify-content: flex-end;
+}
+#container.layout-flow .item .title .right i {
+  position: relative;
+  display: flex;
+  width: 24px;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+#container.layout-flow .item .title .right i::after {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  transition: all 0.2s;
+  background-color: transparent;
+  cursor: pointer;
+}
+#container.layout-flow .item .title .right i::before {
+  position: absolute;
+  width: 5em;
+  height: 2em;
+  border-radius: 1em;
+  top: -2.3em;
+  color: #b6b6b6;
+  content: attr(tip);
+  font: normal bold 1.1em/2em "Microsoft YaHei";
+  background: #111;
+  opacity: 0;
+  text-align: center;
+  transition: all 0.3s;
+}
+#container.layout-flow .item .item-content {
+  height: 100%;
+  overflow: hidden;
+}
+#container.layout-flow .item .item-content pre {
+  min-height: 10em;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+#container.layout-flow .item .item-content pre code {
+  min-height: 10em;
+  width: 100%;
+  height: 100%;
+}
+#container.layout-flow .item .item-content pre code span > span {
+  transition: all 0.1s;
+}
+#container.layout-flow .item .item-content pre code span > span:hover {
+  border-radius: 2px;
+  font-size: 1.12em;
+}
+#container.layout-flow .item.on .title p.right i:nth-child(1):hover::before {
+  opacity: 100;
+}
+#container.layout-flow .item.on .title p.right i:nth-child(1):hover::after {
+  background: #28BF32;
+  width: 18px;
+  height: 18px;
+}
+#container.layout-flow .item.on .title p.right i:nth-child(2):hover::before {
+  opacity: 100;
+}
+#container.layout-flow .item.on .title p.right i:nth-child(2):hover::after {
+  background: #F8D125;
+  width: 18px;
+  height: 18px;
+}
+#container.layout-flow .item.on .title p.right i:nth-child(3):hover::before {
+  opacity: 100;
+}
+#container.layout-flow .item.on .title p.right i:nth-child(3):hover::after {
+  background: #EC6D4E;
+  width: 18px;
+  height: 18px;
+}
+#container.layout-flow .item.select {
+  box-sizing: border-box;
+  border: solid 2px #fff;
+}
+
+#article::-webkit-scrollbar, #container::-webkit-scrollbar, #article .item-content::-webkit-scrollbar {
+  width: 1em;
+  background: transparent;
+  transition: all 1s;
+}
+#article::-webkit-scrollbar-track, #article::-webkit-scrollbar-corner, #container::-webkit-scrollbar-track, #container::-webkit-scrollbar-corner, #article .item-content::-webkit-scrollbar-track, #article .item-content::-webkit-scrollbar-corner {
+  background: transparent;
+}
+#article::-webkit-scrollbar-thumb, #container::-webkit-scrollbar-thumb, #article .item-content::-webkit-scrollbar-thumb {
+  cursor: copy;
+  border-radius: 1em;
+  background-color: rgb(40, 40, 40);
+}
+#article::-webkit-scrollbar-thumb:hover, #container::-webkit-scrollbar-thumb:hover, #article .item-content::-webkit-scrollbar-thumb:hover {
+  cursor: copy;
+  background-color: rgb(80, 80, 80);
+}
+
+#article .hljs.hljs {
+  border-radius: 4px;
+  background: rgb(30, 30, 30);
+}
+
+code::-webkit-scrollbar, .item-content::-webkit-scrollbar {
+  cursor: pointer;
+  width: 0.8em;
+  height: 0.8em;
+  background: transparent;
+  transition: all 1s;
+}
+code::-webkit-scrollbar:hover, .item-content::-webkit-scrollbar:hover {
+  width: 0.8em;
+  height: 0.8em;
+}
+code::-webkit-scrollbar-track, .item-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+code::-webkit-scrollbar-corner, .item-content::-webkit-scrollbar-corner {
+  background: transparent;
+}
+code::-webkit-scrollbar-thumb, .item-content::-webkit-scrollbar-thumb {
+  border-radius: 0.4em;
+  background: transparent;
+  transition: all 0.5s;
+}
+code:hover::-webkit-scrollbar-thumb, .item-content:hover::-webkit-scrollbar-thumb {
+  border-radius: 0.4em;
+  background: #4d4d4d;
+}
+code table, .item-content table {
+  outline: none;
+}
+code table tbody > tr:hover, .item-content table tbody > tr:hover {
+  background-color: rgb(66, 66, 66);
+}
+
+.hljs-ln-n:before {
+  padding-right: 0.8em;
+  content: attr(data-line-number);
+}
+
+td.hljs-ln-code {
+  padding-left: 15px !important;
+}
+
+/* for block of numbers */
+.hljs-ln-numbers {
+  text-align: right;
+  border-right: 1px solid #444;
+  color: #777;
+  /* your custom style here */
+}
+
+/* for block of code */
+
+/*# sourceMappingURL=style.css.map */
