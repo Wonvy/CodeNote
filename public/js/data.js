@@ -2,8 +2,8 @@ export { postJsonAdd, postJsonDel }
 
 // const hostURL = ''
 // const hostURL = 'http://192.168.6.126:3000'
-const hostURL = 'http://127.0.0.1:3000'
-
+// const hostURL = 'http://127.0.0.1:3000'
+const hostURL = ''
 
 // 添加数据
 async function postJsonAdd(data) {

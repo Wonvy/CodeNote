@@ -96,24 +96,6 @@
       "folderId": "",
       "tagsIds": [],
       "description": null,
-      "name": "格式化代码",
-      "content": [
-        {
-          "label": "格式化代码",
-          "language": "javascript",
-          "value": "// 格式化代码\n\nfunction codeformat(code, language) {}\n"
-        }
-      ],
-      "id": "5c7e438c-dd0c-4867-82c6-3e978a0b5c83",
-      "createdAt": 1676053677626,
-      "updatedAt": 1676086290149
-    },
-    {
-      "isDeleted": false,
-      "isFavorites": false,
-      "folderId": "",
-      "tagsIds": [],
-      "description": null,
       "name": "css",
       "content": [
         {
@@ -150,17 +132,17 @@
       "folderId": "",
       "tagsIds": [],
       "description": null,
-      "name": "html456",
+      "name": "javascript",
       "content": [
         {
-          "label": "html456",
-          "language": "html",
+          "label": "javascript",
+          "language": "javascript",
           "value": ""
         }
       ],
-      "id": "0262c285-ae0c-4d4a-8dd4-570d3d21ceac",
-      "createdAt": 1676086321069,
-      "updatedAt": 1676086321069
+      "id": "1be4d261-fec4-4a91-879f-96064a808aba",
+      "createdAt": 1676354321571,
+      "updatedAt": 1676354321571
     },
     {
       "isDeleted": false,
@@ -168,53 +150,17 @@
       "folderId": "",
       "tagsIds": [],
       "description": null,
-      "name": "html",
+      "name": "pr",
       "content": [
         {
-          "label": "html",
-          "language": "html",
+          "label": "pr",
+          "language": "pr",
           "value": ""
         }
       ],
-      "id": "e9a8f9e5-5c6e-4bdf-b096-6fa8d6d997d8",
-      "createdAt": 1676089383017,
-      "updatedAt": 1676089383017
-    },
-    {
-      "isDeleted": false,
-      "isFavorites": false,
-      "folderId": "",
-      "tagsIds": [],
-      "description": null,
-      "name": "html",
-      "content": [
-        {
-          "label": "html",
-          "language": "html",
-          "value": ""
-        }
-      ],
-      "id": "982a631f-20c2-46a0-91ca-3c6d11638e9c",
-      "createdAt": 1676089384801,
-      "updatedAt": 1676089384801
-    },
-    {
-      "isDeleted": false,
-      "isFavorites": false,
-      "folderId": "",
-      "tagsIds": [],
-      "description": null,
-      "name": "html",
-      "content": [
-        {
-          "label": "html",
-          "language": "html",
-          "value": ""
-        }
-      ],
-      "id": "6b29637d-29c9-4b88-8889-7edb53c558f6",
-      "createdAt": 1676089387957,
-      "updatedAt": 1676089387957
+      "id": "68c1688f-11a4-482e-a0ca-7a991ff6cad1",
+      "createdAt": 1676354326389,
+      "updatedAt": 1676354326389
     }
   ]
 }

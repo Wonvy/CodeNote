@@ -2,7 +2,6 @@
 import { codeLoad, code_add, code_save, showScreen, item_mouseover, sideHide, code_show, code_show_keydonw } from '/js/event.js'
 
 
-// const hostURL = 'http://localhost:3000'
 const navul = document.getElementsByClassName("navul");
 const container = document.getElementById("container");
 
@@ -33,8 +32,18 @@ container.addEventListener("click", code_show, false)
 // 点击软件图标
 navul[0].addEventListener("click", code_add, false);
 
+
 // 鼠标经过
 container.addEventListener("mouseover", item_mouseover, false)
+
+function logSelection(event) {
+	const log = document.getElementById('log');
+	const selection = event.target.value.substring(event.target.selectionStart, event.target.selectionEnd);
+	log.textContent = `You selected: ${selection}`;
+}
+
+const input = document.querySelector('code');
+input.addEventListener('select', logSelection);
 
 // 按下空格
 document.addEventListener("keydown", code_show_keydonw, false)
