@@ -153,7 +153,6 @@ html, body {
   width: 0px;
   height: 100%;
   background-color: #2a2a2a;
-  transition: all 0.5s;
   flex-direction: column;
   border-right: 1px solid rgba(117, 107, 107, 0);
   z-index: 999;
@@ -203,6 +202,9 @@ html, body {
 #menu.on {
   width: 20em;
   opacity: 1;
+}
+#menu.mg {
+  transition: all 0.5s;
 }
 
 #preview-wrap {
@@ -264,6 +266,7 @@ html, body {
 }
 
 #container-wrap {
+  position: relative;
   flex: 1;
   overflow: auto;
   display: flex;
@@ -1080,5 +1083,20 @@ td.hljs-ln-code {
 }
 
 /* for block of code */
+.resize {
+  position: absolute;
+  content: "";
+  width: 0.6em;
+  right: -0.3em;
+  height: 100%;
+  background-color: aqua;
+  opacity: 0;
+  cursor: w-resize;
+  z-index: 99;
+}
+.resize:hover {
+  background-color: rgb(69, 69, 69);
+  opacity: 1;
+}
 
 /*# sourceMappingURL=style.css.map */

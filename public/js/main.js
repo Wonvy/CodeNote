@@ -1,9 +1,14 @@
 
-import { codeLoad, code_add, code_save, showScreen, item_mouseover, sideHide, code_show, code_show_keydonw } from '/js/event.js'
 
+import { codeLoad, code_add, code_save, showScreen, item_mouseover, sideHide, code_show, code_show_keydonw } from '/js/event.js'
+import { Resize } from '/js/ui.js'
 
 const navul = document.getElementsByClassName("navul");
 const container = document.getElementById("container");
+
+new Resize('.rz1').main()
+new Resize('.rz2').main()
+
 
 // 加载代码
 codeLoad()

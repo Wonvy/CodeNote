@@ -234,7 +234,8 @@ function item_mouseover(e) {
 function sideHide() {
 	let menu = document.getElementById("menu");
 	let preview = document.getElementById("preview-wrap");
-
+	menu.style.flex = 'auto';
+	menu.style.width = '0px';
 	menu.addEventListener("click", function () {
 		if (menu.className.includes("on")) {
 			menu.classList.remove("on")
