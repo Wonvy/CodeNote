@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>删除箭头函数</title>
+</head>
+
+<body>
+
+	<div id="button">点我</div>
+
+	<script>
+		const div = document.getElementById('button')
+		const mousedown = (event) => {
+			alert(1)
+			div.removeEventListener('mousedown', mousedown);
+			return true
+		};
+
+		let hh = test()
+		console.log(hh)
+
+		function test() {
+			div.addEventListener('mousedown', mousedown)
+		}
+
+
+	// // 鼠标长按和弹起
+	// function mousedown2(div, time, func1, func2) {
+	// 	let pressTimer;
+	// 	let isLongPress = true;
+
+	// 	const mousedown = (event) => {
+	// 		pressTimer = window.setTimeout(() => {
+	// 			isLongPress = false;
+	// 		}, time);
+	// 	};
+
+	// 	const mouseup = (event) => {
+	// 		window.clearTimeout(pressTimer);
+	// 		if (isLongPress) {
+	// 			return true
+	// 		} else {
+	// 			return false
+	// 		}
+	// 	};
+
+
+	// 	// 鼠标长按
+	// 	div.addEventListener('mousedown', mousedown);
+
+	// 	// 鼠标单击
+	// 	div.addEventListener('mouseup', mouseup);
+
+	</script>
+
+</body>
+
+</html>

@@ -2,12 +2,88 @@
 
 import { codeLoad, code_add, code_save, showScreen, item_mouseover, sideHide, code_show, code_show_keydonw } from '/js/event.js'
 import { Resize } from '/js/ui.js'
+import { postJsonCategory } from './data.js'
+
+
 
 const navul = document.getElementsByClassName("navul");
 const container = document.getElementById("container");
 
 new Resize('.rz1').main()
 new Resize('.rz2').main()
+
+
+
+
+
+
+// 拖拽移动
+container.addEventListener("dragstart", (event) => {
+	// 设置数据
+	event.target.parentElement.classList.add("drag")
+	let data_id = event.target.parentNode.getAttribute("data-id")
+	event.dataTransfer.setData('text/plain', data_id);
+}, false)
+
+
+
+// 拖拽结束，鼠标左键释放
+container.addEventListener("dragend", (e) => {
+	e.target.parentElement.classList.remove("drag")
+	for (let node of navul[0].childNodes) {
+		if (node.className === 'drag') {
+			node.classList.remove('drag')
+		}
+	}
+}, false)
+
+
+
+
+navul[0].addEventListener("dragover", (e) => {
+	let lastNode = e.target
+	e.preventDefault();
+
+	if (e.target.nodeName === 'IMG') {
+		// 遍历当前节点的父节点的所有子节点
+		let currentItem = e.target.parentNode
+		for (let node of currentItem.parentNode.childNodes) {
+			if (node.isSameNode(currentItem)) {
+				node.classList.add('drag')
+			} else {
+				if (node.className === 'drag') {
+					node.classList.remove('drag')
+				}
+			}
+		}
+	}
+})
+
+
+navul[0].addEventListener("drop", (event) => {
+	event.preventDefault();
+	const data = event.dataTransfer.getData('text/plain');
+
+	if (event.target.nodeName === 'IMG') {
+		postJsonCategory(data, event.target.alt) //修改分类
+		// let item = document.querySelector('div[data-id="' + data + '"]')
+		let img = document.querySelector('div[data-id="' + data + '"] .left img')
+		img.src = "icons/" + event.target.alt + ".svg"
+		img.alt = event.target.alt
+	}
+}, false)
+
+
+
+// navul[0].addEventListener("dragleave", (e) => {
+// 	for (let node of navul[0].childNodes) {
+// 		if (node.className === 'drag') {
+// 			node.classList.remove('drag')
+// 		}
+// 	}
+// })
+
+
 
 
 // 加载代码

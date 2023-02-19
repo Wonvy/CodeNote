@@ -25,8 +25,33 @@ class Resize {
 				return resize
 			}
 		}
+
+		// 判断点击位置
+		function mousehas(x, y) {
+			if (x < parent.offsetLeft) {
+				// console.log(1)
+				return false
+			}
+			if (x > parent.offsetLeft + parent.offsetWidth) {
+				// console.log(2)
+				return false
+			}
+			if (y < parent.offsetTop) {
+				// console.log(3)
+				return false
+			}
+			if (y > parent.offsetTop + parent.offsetHeight) {
+				// console.log(parent.offsetTop, parent.offsetHeight)
+				// console.log(4)
+				return false
+			}
+			return true
+		}
 		// 鼠标按下
 		function mousedown(event) {
+			if (!mousehas(event.clientX, event.clientY)) {
+				return false
+			}
 			parent.classList.remove('mg')
 			start_clientWidth = parent.offsetWidth
 			start_screenX = event.clientX
@@ -46,6 +71,7 @@ class Resize {
 			parent.classList.add('mg');
 			document.removeEventListener("mousemove", mousemove, false)
 		}
+
 	}
 
 }

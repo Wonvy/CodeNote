@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<title>DIY 元素连线</title>
+	<style>
+		#container {
+			position: relative;
+			width: 800px;
+			height: 600px;
+			margin: 20px auto;
+			border: 1px solid #ccc;
+		}
+
+		.box {
+			position: absolute;
+			width: 100px;
+			height: 100px;
+			background-color: #f0f0f0;
+			border: 1px solid #999;
+			box-sizing: border-box;
+		}
+
+		.box:hover {
+			cursor: move;
+		}
+
+		canvas {
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: -1;
+		}
+
+		#container {
+			width: 500px;
+			height: 500px;
+			border: 1px solid #ccc;
+			position: relative;
+		}
+
+		.box {
+			width: 50px;
+			height: 50px;
+			background-color: #eee;
+			border: 1px solid #ccc;
+			position: absolute;
+		}
+
+		.point {
+			width: 10px;
+			height: 10px;
+			background-color: #000;
+			position: absolute;
+		}
+
+		.point.top {
+			top: -5px;
+			left: 20px;
+		}
+
+		.point.right {
+			top: 20px;
+			right: -5px;
+		}
+
+		.point.bottom {
+			bottom: -5px;
+			left: 20px;
+		}
+
+		.point.left {
+			top: 20px;
+			left: -5px;
+		}
+
+		.line {
+			position: absolute;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="container">
+		<div class="box" style="top: 20px; left: 20px;"></div>
+		<div class="box" style="top: 20px; left: 140px;"></div>
+		<div class="box" style="top: 20px; left: 260px;"></div>
+		<div class="box" style="top: 20px; left: 380px;"></div>
+		<div class="box" style="top: 20px; left: 500px;"></div>
+		<div class="box" style="top: 140px; left: 20px;"></div>
+		<div class="box" style="top: 140px; left: 140px;"></div>
+		<div class="box" style="top: 140px; left: 260px;"></div>
+		<div class="box" style="top: 140px; left: 380px;"></div>
+		<div class="box" style="top: 140px; left: 500px;"></div>
+		<div class="box" style="top: 260px; left: 20px;"></div>
+		<div class="box" style="top: 260px; left: 140px;"></div>
+		<div class="box" style="top: 260px; left: 260px;"></div>
+		<div class="box" style="top: 260px; left: 380px;"></div>
+		<div class="box" style="top: 260px; left: 500px;"></div>
+		<div class="box" style="top: 380px; left: 20px;"></div>
+		<div class="box" style="top: 380px; left: 140px;"></div>
+		<div class="box" style="top: 380px; left: 260px;"></div>
+		<div class="box" style="top: 380px; left: 380px;"></div>
+		<div class="box" style="top: 380px; left: 500px;"></div>
+		<canvas id="canvas" width="500" height="500"></canvas>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script>
+		$(function () {
+			var canvas = document.getElementById("canvas");
+			var ctx = canvas.getContext("2d");
+
+			// 设置画布的宽度和高度
+			canvas.width = $("#container").width();
+			canvas.height = $("#container").height();
+
+			// 定义连线颜色
+			var lineColor = "#000";
+
+			// 定义连接的起点和终点
+			var startX, startY, endX, endY;
+
+			// 定义鼠标是否按下
+			var isMouseDown = false;
+
+			// 定义起点和终点所在的元素
+			var startElement, endElement;
+
+			// 遍历所有元素，并让它们可拖拽
+			$(".box").each(function () {
+				var box = $(this);
+
+				// 使用 jQuery UI 的 draggable 插件
+				box.draggable({
+					stop: function () {
+						// 当元素停止移动时，更新所有连线的位置
+						updateLines();
+					}
+				});
+				// 绑定 mousedown 事件，记录起点
+				box.on("mousedown", function (event) {
+					isMouseDown = true;
+					startElement = $(this);
+					startX = event.pageX - startElement.offset().left;
+					startY = event.pageY - startElement.offset().top;
+				});
+
+				// 绑定 mouseup 事件，记录终点
+				box.on("mouseup", function (event) {
+					isMouseDown = false;
+					endElement = $(this);
+					endX = event.pageX - endElement.offset().left;
+					endY = event.pageY - endElement.offset().top;
+
+					// 如果起点和终点不在同一个元素上，就绘制连线
+					if (startElement != endElement) {
+						drawLine();
+					}
+				});
+			});
+
+			// 绑定 mousemove 事件，更新连线终点
+			$("#container").on("mousemove", function (event) {
+				if (isMouseDown) {
+					endX = event.pageX - $("#container").offset().left;
+					endY = event.pageY - $("#container").offset().top;
+					updateLines();
+				}
+			});
+
+			// 绘制连线
+			function drawLine() {
+				var startX1, startY1, endX1, endY1;
+
+				// 获取起点和终点的坐标
+				startX1 = startElement.offset().left - $("#container").offset().left + startX;
+				startY1 = startElement.offset().top - $("#container").offset().top + startY;
+				endX1 = endElement.offset().left - $("#container").offset().left + endX;
+				endY1 = endElement.offset().top - $("#container").offset().top + endY;
+
+				// 绘制连线
+				ctx.beginPath();
+				ctx.strokeStyle = lineColor;
+				ctx.moveTo(startX1, startY1);
+				ctx.lineTo(endX1, endY1);
+				ctx.stroke();
+
+				// 更新起点和终点
+				startX = startY = endX = endY = null;
+				startElement = endElement = null;
+			}
+
+			function updateLines() {
+				var canvas = $("#canvas")[0];
+				var ctx = canvas.getContext("2d");
+
+				// 清空画布
+				ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+				// 遍历所有连线，绘制到相应的位置
+				$.each(lines, function (index, line) {
+					var box = line.closest(".box");
+					var toBox = line.data("to");
+					var startX1 = box.position().left + 25;
+					var startY1 = box.position().top + 25;
+					var endX1 = toBox.position().left + 25;
+					var endY1 = toBox.position().top + 25;
+
+					// 绘制线条
+					ctx.beginPath();
+					ctx.moveTo(startX1, startY1);
+					ctx.lineTo(endX1, endY1);
+					ctx.strokeStyle = lineColor;
+					ctx.stroke();
+				});
+			}
+
+			// 绑定 mousedown 事件，记录起点
+			$(".box .point").on("mousedown", function (event) {
+				isMouseDown = true;
+				startElement = $(this).closest(".box");
+				startX = event.offsetX;
+				startY = event.offsetY;
+			});
+
+			// 绑定 mouseup 事件，记录终点，并绘制连线
+			$(".box .point").on("mouseup", function (event) {
+				isMouseDown = false;
+				endElement = $(this).closest(".box");
+				endX = event.offsetX;
+				endY = event.offsetY;
+
+				// 如果起点和终点不在同一个元素上，就绘制连线
+				if (startElement != endElement) {
+					var line = $("<div class='line'></div>");
+					line.data("to", endElement);
+					line.data("startX", startX);
+					line.data("startY", startY);
+					line.data("endX", endX);
+					line.data("endY", endY);
+					startElement.append(line);
+					updateLines();
+				}
+			});
+		});
+	</script>
+</body>
+
+</html>

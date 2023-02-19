@@ -157,30 +157,6 @@ html, body {
   border-right: 1px solid rgba(117, 107, 107, 0);
   z-index: 999;
 }
-#menu::after {
-  position: absolute;
-  display: flex;
-  top: 45vh;
-  right: -2.2em;
-  width: 2.2em;
-  height: 4em;
-  color: #7f7f7f;
-  background-color: rgb(56, 56, 56);
-  content: ">";
-  transition: all 0.2s;
-  cursor: pointer;
-  border-radius: 0 5px 5px 0;
-  align-items: center;
-  justify-content: center;
-}
-#menu:hover::after {
-  color: #cacaca;
-  right: -2.6em;
-  width: 2.6em;
-  content: "▶";
-  background-color: rgb(80, 80, 80);
-  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
-}
 #menu.header {
   flex: 2;
   color: #ffffff;
@@ -323,17 +299,21 @@ html, body {
   width: 4em;
   height: 4em;
 }
-#container-wrap .nav ul.navul img {
+#container-wrap .nav ul.navul li img {
   width: 2.2em;
   height: 2.2em;
   transition: all 0.2s;
 }
 @media screen and (max-device-height: 1668px) and (max-device-width: 2388px) {
-  #container-wrap .nav ul.navul img {
+  #container-wrap .nav ul.navul li img {
     padding: 0 3em 0 2em;
     width: 3.5em;
     height: 3.5em;
   }
+}
+#container-wrap .nav ul.navul li.drag img {
+  width: 5em;
+  height: 5em;
 }
 #container-wrap .nav dl.listview {
   position: relative;
@@ -427,6 +407,7 @@ html, body {
   border-radius: 0.5em;
   background-color: rgb(30, 30, 30);
   transition: all 0.4s;
+  transition: border 0.1s;
   box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.1);
 }
 #container.layout-grid .item:hover {
@@ -1009,6 +990,10 @@ html, body {
   border: solid 2px #fff;
 }
 
+#container.layout-grid .item.drag {
+  border: 2px solid #5d6368;
+}
+
 #article::-webkit-scrollbar, #container::-webkit-scrollbar, #article .item-content::-webkit-scrollbar {
   width: 1em;
   background: transparent;
@@ -1089,14 +1074,39 @@ td.hljs-ln-code {
   width: 0.6em;
   right: -0.3em;
   height: 100%;
-  background-color: aqua;
-  opacity: 0;
+  background-color: rgba(0, 0, 0, 0);
   cursor: w-resize;
   z-index: 99;
+  transition: all 0.2s;
 }
 .resize:hover {
   background-color: rgb(69, 69, 69);
   opacity: 1;
+}
+.resize::after {
+  position: absolute;
+  display: flex;
+  top: 45vh;
+  right: -2.2em;
+  width: 2.2em;
+  height: 4em;
+  color: #7f7f7f;
+  background-color: rgb(56, 56, 56);
+  content: ">";
+  transition: all 0.2s;
+  cursor: pointer;
+  border-radius: 0 5px 5px 0;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+}
+.resize:hover::after {
+  color: #cacaca;
+  right: -2.6em;
+  width: 2.6em;
+  content: "▶";
+  background-color: rgb(80, 80, 80);
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
 }
 
 /*# sourceMappingURL=style.css.map */

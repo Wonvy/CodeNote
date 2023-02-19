@@ -82,12 +82,53 @@ app.post('/json/add', async (req, res) => {
 	}
 })
 
+
+// 路由-分类
+app.post('/json/category', async (req, res) => {
+	// console.log('params', req.params);
+	// console.log('body', req.body);
+	const jsonData = req.body;  //获取请求体参数json
+	console.log(jsonData)
+	try {
+		// 读取数据
+		let db = await getDb()
+		let State = false
+
+
+		// 加工数据
+		for (let i = 0; i < db.snippets.length; i++) {
+			if (db.snippets[i].id === jsonData.category[0].id) {
+				console.log('before', db.snippets[i].content[0].language)
+				db.snippets[i].content[0].language = jsonData.category[0].language
+				console.log('after', db.snippets[i].content[0].language)
+				State = true
+				break
+			}
+		}
+
+		//写入数据
+		if (State) {
+			fs.writeFileSync('./public/db.json', JSON.stringify(db, null, 2), 'utf8', err => {
+				console.log(err)
+			})
+			res.status(200).json("修改分类成功")
+		} else {
+			res.status(200).json("找不到")
+		}
+	} catch (err) {
+		res.status(499).json({
+			error: err.message
+		})
+	}
+})
+
+
 // 路由-删除
 app.post('/json/del', async (req, res) => {
 	// console.log('params', req.params);
 	// console.log('body', req.body);
 	const jsonData = req.body;  //获取请求体参数json
-	console.log(jsonData)
+	// console.log(jsonData)
 	try {
 		// 读取数据
 		let db = await getDb()

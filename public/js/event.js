@@ -1,6 +1,8 @@
 import { uuid, getNowDate, randomNum, escapeHTML, unescapeHTML } from './func.js'
-import { postJsonAdd, postJsonDel } from './data.js'
-export { code_show, code_add, code_save, showScreen, sideHide, item_mouseover, code_show_keydonw, codeLoad }
+import { postJsonAdd, postJsonDel, postJsonCategory } from './data.js'
+export { postJsonCategory, code_show, code_add, code_save, showScreen, sideHide, item_mouseover, code_show_keydonw, codeLoad }
+
+
 
 // 显示代码框
 function code_show(e) {
@@ -53,7 +55,7 @@ function codeNew(otext, imgpath, alt) {
 	let contenteditable = 'true'
 
 
-	item.innerHTML = `<div class="item open" data-id="${uuid()}"><div class="title"><div class="left"><img src="${imgpath}" alt="${alt}"><h3 contenteditable="true">${otext}</h3></div><p class="right"><i class="codeFormat" tip="格式化"></i><i tip="最大化"></i><i class="close" tip="删除"></i></p></div><div class="item-content"><pre spellcheck="false" contenteditable="${contenteditable}"><code class="language-${otext}"></code></pre></div></div>`
+	item.innerHTML = `<div class="item open" draggable="true" data-id="${uuid()}"><div class="title" draggable="true"><div class="left"><img src="${imgpath}" alt="${alt}"><h3 contenteditable="true">${otext}</h3></div><p class="right"><i class="codeFormat" tip="格式化"></i><i tip="最大化"></i><i class="close" tip="删除"></i></p></div><div class="item-content"><pre spellcheck="false" contenteditable="${contenteditable}"><code class="language-${otext}"></code></pre></div></div>`
 	// console.log('container.firstElementChild', container.firstElementChild)
 
 	if (container.firstElementChild == null) {
@@ -121,7 +123,6 @@ function code_save(e) {
 	showScreen(false) // 关闭详情
 }
 
-
 // 加载代码
 async function codeLoad() {
 	await fetch("./db.json")
@@ -140,7 +141,7 @@ async function codeLoad() {
 
 				// codetext = codeformat(codetext) //格式化
 				code.append(codetext)
-				item.innerHTML = `<div class="item" data-id="${res.snippets[i].id}"><div class="title"><div class="left"><img src="icons/${res.snippets[i].content[0].language}.svg" alt="${res.snippets[i].content[0].language}"><h3 contenteditable="true" >${res.snippets[i].content[0].label}</h3></div><p class="right"><i class="codeFormat" tip="格式化"></i><i tip="最大化"></i><i class="close" tip="删除"></i></p></div><div class="item-content"> <pre spellcheck="false" contenteditable="${contenteditable}"><code class="language-${res.snippets[i].content[0].language}">${code.innerHTML}</code></pre></div></div>`
+				item.innerHTML = `<div class="item" data-id="${res.snippets[i].id}"><div class="title" draggable="true"><div class="left"><img src="icons/${res.snippets[i].content[0].language}.svg" alt="${res.snippets[i].content[0].language}"><h3 contenteditable="true" >${res.snippets[i].content[0].label}</h3></div><p class="right"><i class="codeFormat" tip="格式化"></i><i tip="最大化"></i><i class="close" tip="删除"></i></p></div><div class="item-content"> <pre spellcheck="false" contenteditable="${contenteditable}"><code class="language-${res.snippets[i].content[0].language}">${code.innerHTML}</code></pre></div></div>`
 				// console.log(item.innerHTML)
 				// console.log(escapeHTML(item.innerHTML))
 				// let codetest = escapeHTML('<div class="item" data-id="09184a16-4c21-4a8e-83f7-b71b1446abd3"></div>')
@@ -184,7 +185,6 @@ function code_show_keydonw(e) {
 	showScreen(true, itemhtml);
 }
 
-
 // 显示全屏div
 function showScreen(show, html) {
 	let open = container.querySelector(".open");
@@ -225,25 +225,46 @@ function item_mouseover(e) {
 			});
 		}
 	} catch (err) {
-		console.log(err)
+		// console.log(err)
 	}
 }
 
+// 鼠标长按和弹起
+function mousedown2(div, time, func1, func2) {
+	let pressTimer;
+	let isLongPress = true;
+	const mousedown = (event) => {
+		pressTimer = window.setTimeout(() => {
+			isLongPress = false;
+		}, time);
+	};
+
+	// 鼠标长按
+	div.addEventListener('mousedown', mousedown);
+	div.addEventListener('mouseup', (event) => {
+		window.clearTimeout(pressTimer);
+		if (isLongPress) {
+			//单击
+			// console.log('A')
+			eval(func1)
+			// menu_sidebar() 
+		} else {
+			//长按
+			eval(func2)
+			// console.log('B')
+		}
+		isLongPress = true
+	});
+}
 
 // 侧边栏隐藏
 function sideHide() {
 	let menu = document.getElementById("menu");
 	let preview = document.getElementById("preview-wrap");
-	menu.style.flex = 'auto';
-	menu.style.width = '0px';
-	menu.addEventListener("click", function () {
-		if (menu.className.includes("on")) {
-			menu.classList.remove("on")
-		} else {
-			menu.classList.add("on")
-		}
+	let rz1 = menu.querySelector('.resize')
 
-	});
+	mousedown2(rz1, 150, 'menu_sidebar()', '')
+
 	preview.addEventListener("click", function () {
 		if (preview.className.includes("on")) {
 			preview.classList.remove("on")
@@ -251,9 +272,26 @@ function sideHide() {
 			preview.classList.add("on")
 		}
 	});
+
 }
 
-
+// 侧边栏伸缩
+function menu_sidebar() {
+	let menu = document.getElementById("menu");
+	let menu_width = menu.style.width
+	if (menu_width == '') {
+		if (menu.className.includes("on")) {
+			menu.classList.remove("on")
+			menu.style.width = '';
+		} else {
+			menu.classList.add("on")
+			menu.style.width = '';
+		}
+	} else {
+		menu.classList.remove("on")
+		menu.style.width = '';
+	}
+}
 
 // 格式化代码
 function codeformat(code, language) {

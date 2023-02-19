@@ -1,4 +1,4 @@
-export { postJsonAdd, postJsonDel }
+export { postJsonAdd, postJsonDel, postJsonCategory }
 
 // const hostURL = ''
 // const hostURL = 'http://192.168.6.126:3000'
@@ -19,6 +19,37 @@ async function postJsonAdd(data) {
 			console.log(response)
 		})
 }
+
+// 数据分类
+async function postJsonCategory(id, language) {
+	let cc
+	let data = {
+		"category": [
+			{
+				"id": id,
+				"language": language
+			}
+		]
+	}
+	// console.log(hostURL + '/json/del/')
+	// console.log(data)
+	let URL = hostURL + '/json/category/'
+	await fetch(URL, {
+		method: 'post',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(data),
+	})
+		.then((response) => response.json())
+		.then((response) => {
+			// console.log('typeof', typeof response)
+			// cc = response
+			return response
+		})
+	// return cc
+}
+
 
 // 删除数据
 async function postJsonDel(id) {

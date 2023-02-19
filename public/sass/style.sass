@@ -138,8 +138,8 @@ html,body
 	// transition: all 0.5s
 	flex-direction: column
 	border-right: 1px solid rgba(117, 107, 107, 0)
-	@include foldingButton(">","▶")
 	z-index: 999
+	// pointer-events: none
 	&.header
 		flex: 2
 		color: #ffffff
@@ -271,14 +271,24 @@ html,body
 					img
 						width: 4em
 						height: 4em
-			img
-				width: 2.2em
-				height: 2.2em
-				transition: all 0.2s
-				@include ipadPro
-					padding: 0 3em 0 2em
-					width: 3.5em
-					height: 3.5em
+				img
+					width: 2.2em
+					height: 2.2em
+					transition: all 0.2s
+					@include ipadPro
+						padding: 0 3em 0 2em
+						width: 3.5em
+						height: 3.5em
+					// &.drag
+					// 	width: 5em
+					// 	height: 5em
+				&.drag
+					img
+						width: 5em
+						height: 5em
+					// ~ *
+					// 	opacity: 0.1
+
 		dl
 			&.listview
 				// display: flex
@@ -364,6 +374,7 @@ html,body
 		border-radius: 0.5em
 		background-color: rgb(30 30 30)
 		transition: all 0.4s
+		transition: border 0.1s
 		box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.1)
 		&:hover
 			top: -0.3em
@@ -888,6 +899,11 @@ html,body
 			box-sizing: border-box
 			border: solid 2px #fff
 
+#container.layout-grid
+	.item
+		&.drag
+			border: 2px solid #5d6368
+
 //滚动条样式
 #article,#container,#article .item-content
 	&::-webkit-scrollbar
@@ -981,10 +997,14 @@ td.hljs-ln-code
 	width: 0.6em
 	right: -0.3em
 	height: 100%
-	background-color: aqua
-	opacity: 0
+	background-color: rgba(0, 0, 0, 0)
 	cursor: w-resize
 	z-index: 99
+	transition: all 0.2s
+	// pointer-events: none
 	&:hover
+		// width: 0.4em
+		// right: -0.2em
 		background-color: rgb(69, 69, 69)
 		opacity: 1
+	@include foldingButton(">","▶")

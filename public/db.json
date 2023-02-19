@@ -6,35 +6,17 @@
       "folderId": "",
       "tagsIds": [],
       "description": null,
-      "name": "SVG案例",
+      "name": "类：调整元素宽度",
       "content": [
         {
-          "label": "SVG案例",
-          "language": "html",
-          "value": "<svg\n  xmlns=\"http://www.w3.org/2000/svg\"\n  viewBox=\"0 0 24 24\"\n  width=\"24\"\n  height=\"24\"\n>\n  <path fill=\"none\" d=\"M0 0h24v24H0z\" />\n\n  <path\n    d=\"M8 4h13v2H8V4zm-5-.5h3v3H3v-3zm0 7h3v3H3v-3zm0 7h3v3H3v-3zM8 11h13v2H8v-2zm0 7h13v2H8v-2z\"\n  />\n</svg>\n"
-        }
-      ],
-      "id": "3d124129-4b1c-452c-9fdf-a22ba9cc3805",
-      "createdAt": 1675980676109,
-      "updatedAt": 1675984525641
-    },
-    {
-      "isDeleted": false,
-      "isFavorites": false,
-      "folderId": "",
-      "tagsIds": [],
-      "description": null,
-      "name": "javascript",
-      "content": [
-        {
-          "label": "javascript",
+          "label": "类：调整元素宽度",
           "language": "javascript",
-          "value": "<!-- 显示代码 -->\n\n<div id=\"screen\">\n  <div id=\"article\">screen</div>\n</div>\n"
+          "value": "export { Resize };\n\nclass Resize {\n  constructor(name) {\n    this.name = name;\n  }\n  main() {\n    let start_screenX = 0;\n    let start_clientWidth = 0; // 开始宽度\n    let start_leftX = 0; // 最左边\n    let end_clientWidth = 0; // 结束宽度\n    let resize = getelement(this.name);\n    let parent = resize.parentNode;\n\n    resize.addEventListener(\"mousedown\", mousedown, false);\n\n    // 获取元素\n    function getelement(name) {\n      if (name.indexOf(\".\") != -1) {\n        let resize = document.getElementsByClassName(name.substr(1))[0];\n        return resize;\n      }\n      if (name.indexOf(\"#\") != -1) {\n        let resize = document.getElementById(name.substr(1));\n        return resize;\n      }\n    }\n\n    // 判断点击位置\n    function mousehas(x, y) {\n      if (x < parent.offsetLeft) {\n        // console.log(1)\n        return false;\n      }\n      if (x > parent.offsetLeft + parent.offsetWidth) {\n        // console.log(2)\n        return false;\n      }\n      if (y < parent.offsetTop) {\n        // console.log(3)\n        return false;\n      }\n      if (y > parent.offsetTop + parent.offsetHeight) {\n        // console.log(parent.offsetTop, parent.offsetHeight)\n        // console.log(4)\n        return false;\n      }\n      return true;\n    }\n    // 鼠标按下\n    function mousedown(event) {\n      if (!mousehas(event.clientX, event.clientY)) {\n        return false;\n      }\n      parent.classList.remove(\"mg\");\n      start_clientWidth = parent.offsetWidth;\n      start_screenX = event.clientX;\n      start_leftX = parent.offsetLeft;\n      document.addEventListener(\"mousemove\", mousemove, false);\n      document.addEventListener(\"mouseup\", mouseup, false);\n    }\n    // 鼠标移动\n    function mousemove(event) {\n      end_clientWidth = start_clientWidth + (event.clientX - start_screenX);\n      if (end_clientWidth <= 0) {\n        end_clientWidth = resize.offsetWidth / 2;\n      }\n      parent.style.flex = \"none\";\n      parent.style.width = end_clientWidth + \"px\";\n    }\n    // 鼠标弹起\n    function mouseup(event) {\n      parent.classList.add(\"mg\");\n      document.removeEventListener(\"mousemove\", mousemove, false);\n    }\n  }\n}\n"
         }
       ],
-      "id": "9328fda9-e570-4d39-ac05-4c43028ebcdb",
-      "createdAt": 1675984427245,
-      "updatedAt": 1675984458498
+      "id": "d5fd1d5e-e2f2-4cb0-83ab-f5057cfc0268",
+      "createdAt": 1676511495244,
+      "updatedAt": 1676593172483
     },
     {
       "isDeleted": false,
@@ -42,17 +24,17 @@
       "folderId": "",
       "tagsIds": [],
       "description": null,
-      "name": "html",
+      "name": "鼠标单击和长按",
       "content": [
         {
-          "label": "html",
-          "language": "html",
-          "value": "<!DOCTYPE html>\n\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\" />\n\n    <link rel=\"stylesheet\" href=\"/css/reset.css\" />\n\n    <link rel=\"stylesheet\" href=\"./css/style.css\" />\n\n    <link rel=\"stylesheet\" href=\"/js/highlight/atom-one-dark.min.css\" />\n\n    <link rel=\"stylesheet\" href=\"/js/ulid.js\" />\n\n    <script src=\"/js/highlight/highlight.min.js\"></script>\n\n    <script src=\"/js/highlight/go.min.js\"></script>\n\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js\"></script>\n\n    <script src=\"https://unpkg.com/prettier@2.8.4/standalone.js\"></script>\n\n    <script src=\"https://unpkg.com/prettier@2.8.4/parser-html.js\"></script>\n\n    <!-- <script>\n\n\t\t\tconsole.log(\n\n\t\t\t\tprettier.format(\"type Query {hello: String }\", {\n\n\t\t\t\t\tparser: \"graphql\",\n\n\t\t\t\t\tplugins: prettierPlugins,\n\n\t\t\t\t})\n\n\t\t\t)\n\n\t\t</script> -->\n\n    <title>代码收纳盒</title>\n  </head>\n\n  <body>\n    <!-- 显示代码 -->\n\n    <div id=\"screen\">\n      <div id=\"article\">screen</div>\n    </div>\n\n    <!-- 主体 -->\n\n    <div id=\"wrap\">\n      <div id=\"menu\">\n        <div class=\"header\">header</div>\n\n        <section>section</section>\n\n        <ul id=\"menuli\">\n          <li>img</li>\n\n          <li>保存</li>\n\n          <li>3</li>\n\n          <li>4</li>\n\n          <li>5</li>\n        </ul>\n      </div>\n\n      <div id=\"container-wrap\">\n        <div class=\"nav\">\n          <ul class=\"logo\">\n            <li></li>\n          </ul>\n\n          <ul class=\"navul\">\n            <li><img src=\"icons/Ae.svg\" alt=\"Ae\" /></li>\n\n            <li><img src=\"./icons/PPT.svg\" alt=\"PPT\" /></li>\n\n            <li><img src=\"./icons/Python.svg\" alt=\"python\" /></li>\n\n            <li><img src=\"./icons/nodejs.svg\" alt=\"nodejs\" /></li>\n\n            <li><img src=\"./icons/shapr3d.svg\" alt=\"shapr3d\" /></li>\n\n            <li><img src=\"./icons/vscode.svg\" alt=\"vscode\" /></li>\n\n            <li><img src=\"./icons/Pr.svg\" alt=\"Pr\" /></li>\n\n            <li><img src=\"./icons/blender.svg\" alt=\"blender\" /></li>\n\n            <li><img src=\"./icons/C4D.svg\" alt=\"C4D\" /></li>\n\n            <li><img src=\"./icons/Ai.svg\" alt=\"Ai\" /></li>\n\n            <li><img src=\"./icons/JavaScript.svg\" alt=\"javascript\" /></li>\n\n            <li><img src=\"./icons/Obsidian.svg\" alt=\"obsidian\" /></li>\n\n            <li><img src=\"./icons/CSS.svg\" alt=\"CSS\" /></li>\n\n            <li><img src=\"./icons/Django.svg\" alt=\"django\" /></li>\n\n            <li><img src=\"./icons/HTML5.svg\" alt=\"html\" /></li>\n          </ul>\n\n          <dl class=\"listview\">\n            <dt>\n              <span class=\"current\">列表</span>\n\n              <svg\n                xmlns=\"http://www.w3.org/2000/svg\"\n                viewBox=\"0 0 24 24\"\n                width=\"24\"\n                height=\"24\"\n              >\n                <path fill=\"none\" d=\"M0 0h24v24H0z\" />\n\n                <path\n                  d=\"M8 4h13v2H8V4zm-5-.5h3v3H3v-3zm0 7h3v3H3v-3zm0 7h3v3H3v-3zM8 11h13v2H8v-2zm0 7h13v2H8v-2z\"\n                />\n              </svg>\n            </dt>\n\n            <dd class=\"btgrid\">\n              <span>网格</span>\n\n              <svg\n                xmlns=\"http://www.w3.org/2000/svg\"\n                viewBox=\"0 0 24 24\"\n                width=\"24\"\n                height=\"24\"\n              >\n                <path fill=\"none\" d=\"M0 0h24v24H0z\" />\n\n                <path\n                  d=\"M21 3a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h18zM11 13H4v6h7v-6zm9 0h-7v6h7v-6zm-9-8H4v6h7V5zm9 0h-7v6h7V5z\"\n                />\n              </svg>\n            </dd>\n\n            <dd class=\"btflow\">\n              <span>瀑布流</span>\n\n              <svg\n                xmlns=\"http://www.w3.org/2000/svg\"\n                viewBox=\"0 0 24 24\"\n                width=\"24\"\n                height=\"24\"\n              >\n                <path fill=\"none\" d=\"M0 0h24v24H0z\" />\n\n                <path\n                  d=\"M22 20a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h18a1 1 0 0 1 1 1v16zm-11-5H4v4h7v-4zm9-4h-7v8h7v-8zm-9-6H4v8h7V5zm9 0h-7v4h7V5z\"\n                />\n              </svg>\n            </dd>\n\n            <dd class=\"btlist\">\n              <span>列表</span>\n\n              <svg\n                xmlns=\"http://www.w3.org/2000/svg\"\n                viewBox=\"0 0 24 24\"\n                width=\"24\"\n                height=\"24\"\n              >\n                <path fill=\"none\" d=\"M0 0h24v24H0z\" />\n\n                <path\n                  d=\"M8 4h13v2H8V4zm-5-.5h3v3H3v-3zm0 7h3v3H3v-3zm0 7h3v3H3v-3zM8 11h13v2H8v-2zm0 7h13v2H8v-2z\"\n                />\n              </svg>\n            </dd>\n          </dl>\n        </div>\n\n        <div id=\"container\" class=\"layout-grid\"></div>\n      </div>\n\n      <div id=\"preview-wrap\">\n        <pre spellcheck=\"false\" contenteditable=\"false\">\n\n\t            <code class=\"language-html hljs language-xml\">1111</code>\n\n\t        </pre>\n      </div>\n    </div>\n\n    <script type=\"module\" src=\"./js/main.js\"></script>\n\n    <!-- ... Vue案例 ... -->\n\n    <!-- <div id=\"app\">{{ message }}</div>\n\n\t\t<script type=\"module\">\n\n\t\t\timport { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'\n\n\t \n\n\t\t\tcreateApp({\n\n\t\t\t\tdata() {\n\n\t\t\t\t\treturn {\n\n\t\t\t\t\t\tmessage: 'Vue引入网站案例 Vue!'\n\n\t\t\t\t\t}\n\n\t\t\t\t}\n\n\t\t\t}).mount('#app')\n\n\t\t</script> -->\n\n    <!-- ... React案例 ... -->\n\n    <!-- ... 其它 HTML ... -->\n\n    <!-- <div id=\"like_button_container\">11111111111111111111</div> -->\n\n    <!-- 加载 React。-->\n\n    <!-- 注意: 部署时，将 \"development.js\" 替换为 \"production.min.js\"。-->\n\n    <!-- <script src=\"https://unpkg.com/react@16/umd/react.development.js\" crossorigin></script> -->\n\n    <!-- <script src=\"https://unpkg.com/react-dom@16/umd/react-dom.development.js\" crossorigin></script> -->\n\n    <!-- 加载我们的 React 组件。-->\n\n    <!-- <script src=\"./js/react/like_button.js\"></script> -->\n  </body>\n</html>\n"
+          "label": "鼠标单击和长按",
+          "language": "django",
+          "value": "let pressTimer;\n\nlet isLongPress = true;\n\n// 鼠标长按\n\nrz1.addEventListener(\"mousedown\", () => {\n  pressTimer = window.setTimeout(() => {\n    // console.log('鼠标按下')\n\n    isLongPress = false; // 鼠标长按\n  }, 150);\n});\n\n// 鼠标单击\n\nrz1.addEventListener(\"mouseup\", () => {\n  window.clearTimeout(pressTimer);\n\n  if (isLongPress) {\n    // console.log('鼠标单击')\n\n    if (menu.className.includes(\"on\")) {\n      menu.classList.remove(\"on\");\n\n      menu.style.width = \"\";\n    } else {\n      menu.classList.add(\"on\");\n\n      menu.style.width = \"\";\n    }\n  }\n\n  isLongPress = true;\n});\n"
         }
       ],
-      "id": "1a641d6e-6811-4bb7-a1a3-78dd9d1937fa",
-      "createdAt": 1675986866506,
-      "updatedAt": 1676054757516
+      "id": "0dc4f95f-68bc-434a-a25f-09b5eb3e0076",
+      "createdAt": 1676511611296,
+      "updatedAt": 1676511698463
     },
     {
       "isDeleted": false,
@@ -60,17 +42,17 @@
       "folderId": "",
       "tagsIds": [],
       "description": null,
-      "name": "PPT",
+      "name": "父元素透明-子元素不透明",
       "content": [
         {
-          "label": "PPT",
-          "language": "PPT",
-          "value": "<svg\n  xmlns=\"http://www.w3.org/2000/svg\"\n  viewBox=\"0 0 24 24\"\n  width=\"24\"\n  height=\"24\"\n>\n  <path fill=\"none\" d=\"M0 0h24v24H0z\" />\n\n  <path\n    d=\"M8 4h13v2H8V4zm-5-.5h3v3H3v-3zm0 7h3v3H3v-3zm0 7h3v3H3v-3zM8 11h13v2H8v-2zm0 7h13v2H8v-2z\"\n  />\n</svg>\n"
+          "label": "父元素透明-子元素不透明",
+          "language": "vscode",
+          "value": ".father {\n  background-color: rgba(0, 0, 0, 0.5);\n}\n\n.child {\n  background-color: rgba(0, 0, 0, 0.5);\n}\n"
         }
       ],
-      "id": "ac1b3026-80c0-4613-b66e-c10d3b26d93d",
-      "createdAt": 1675987029224,
-      "updatedAt": 1675987029224
+      "id": "6db05c15-8379-4813-92bf-49f0d6565cd3",
+      "createdAt": 1676511767851,
+      "updatedAt": 1676511898823
     },
     {
       "isDeleted": false,
@@ -78,89 +60,35 @@
       "folderId": "",
       "tagsIds": [],
       "description": null,
-      "name": "shapr3d",
+      "name": "点击事件关闭和开启",
       "content": [
         {
-          "label": "shapr3d",
-          "language": "shapr3d",
-          "value": "<file_component\n  checkvalue=\"BE6C45EBE12FAF22A853426FE0DD7869\"\n  signature=\"MGUCMGo2RpS3zS68FuEhbTvV4ADVWvg75iG4vQFvMXlQD5YHK1EvPs+/cdZO5dJVAhX4swIxAI1qxjyZx+zVPwvQ0bNXHabtfBHC4sB8UXyeXrdxthfqKfa4Pr7o+qCWAS5i/wozRA==\"\n>\n      <filters>\n            <filter\n      appClientId=\"WeChatWin\"\n      appClientVerMin=\"0x63070601\"\n      sdkMin=\"210501\"\n      runtimeAbis=\"x86\"\n    />      </filters\n  >\n\n      <file md5=\"36368c338d7325f3b8b5e5cfdbd3e6ab\" length=\"1599368\"\n    >host\\wmpf_host_export.dll</file\n  >\n\n      <file md5=\"be1eb327460b1995cdc33ea8224404c8\" length=\"138632\"\n    >runtime\\ComponentVerification.dll</file\n  >\n\n      <file md5=\"5390881c6fe25bc38d58dbb916caa688\" length=\"1040264\"\n    >runtime\\ConfSdk.dll</file\n  >\n\n      <file md5=\"4fd9bc5c635f8fceb13190bda0276d36\" length=\"4113288\"\n    >runtime\\d3dcompiler_47.dll</file\n  >\n\n      <file md5=\"4d95029ce601379834d0789c7db52762\" length=\"1087880\"\n    >runtime\\dbghelp.dll</file\n  >\n\n      <file md5=\"91b814a7b8dead93fe51ad5ae881675a\" length=\"3153800\"\n    >runtime\\ffmpeg.dll</file\n  >\n\n      <file md5=\"d866d68e4a3eae8cdbfd5fc7a9967d20\" length=\"10284336\"\n    >runtime\\icudtl.dat</file\n  >\n\n      <file md5=\"a2c2adec9b5f99a94a7b889c1bba8bd5\" length=\"4197256\"\n    >runtime\\ilink_network.dll</file\n  >\n\n      <file md5=\"1d166d189eb1ea9ced3c872284392929\" length=\"364936\"\n    >runtime\\libEGL.dll</file\n  >\n\n      <file md5=\"2343bc89a5da24ddef841cce0ff0df9e\" length=\"5494664\"\n    >runtime\\libGLESv2.dll</file\n  >\n\n      <file md5=\"c243bc407f269bbaad5806aec7b5e973\" length=\"11006856\"\n    >runtime\\liteav.dll</file\n  >\n\n      <file md5=\"ab643679db4526009091e8a223091272\" length=\"285396\"\n    >runtime\\snapshot_blob.bin</file\n  >\n\n      <file md5=\"6c000417edec457c658a5141978e4b1c\" length=\"4374920\"\n    >runtime\\TRAE.dll</file\n  >\n\n      <file md5=\"91b55e475b6592a82fd53dbbc7e8e86f\" length=\"606128\"\n    >runtime\\v8_context_snapshot.bin</file\n  >\n\n      <file md5=\"633e38ab1b686596c32115c42fa5994d\" length=\"3425160\"\n    >runtime\\vk_swiftshader.dll</file\n  >\n\n      <file md5=\"8642dd3a87e2de6e991fae08458e302b\" length=\"106\"\n    >runtime\\vk_swiftshader_icd.json</file\n  >\n\n      <file md5=\"4793126d896693246ca5954a2f1051b5\" length=\"11718024\"\n    >runtime\\VoipEngine.dll</file\n  >\n\n      <file md5=\"08350b3a234c8dce7c73c4d4a486c7d9\" length=\"728456\"\n    >runtime\\vulkan-1.dll</file\n  >\n\n      <file md5=\"e3d26380bd1f3b11d06ee8c29510fb19\" length=\"116249480\"\n    >runtime\\WeChatAppEx.exe</file\n  >\n\n      <file md5=\"867103ecde560ab3453305275680f62d\" length=\"985832\"\n    >runtime\\wmpf_100_percent.pak</file\n  >\n\n      <file md5=\"bf04370a593654c2914bf8bd2afdbab7\" length=\"1188469\"\n    >runtime\\wmpf_200_percent.pak</file\n  >\n\n      <file md5=\"dcd9ae970ac05d95c109ebf0a2bb3af1\" length=\"11806226\"\n    >runtime\\wmpf_resources.pak</file\n  >\n\n      <file md5=\"8b6e5e33b849d6e19659b0d34d175c52\" length=\"4578184\"\n    >runtime\\WXAMSDK.dll</file\n  >\n\n      <file md5=\"ba17062c7ae30d3604fe77edfdca86bb\" length=\"613768\"\n    >runtime\\xweb_liveplayer.dll</file\n  >\n\n      <file md5=\"476ae647ab4daa3b0d7a8dd11a3e851d\" length=\"105149\"\n    >runtime\\locales\\en-US.pak</file\n  >\n\n      <file md5=\"d4c8179c15a02afcc054acda0d0dd6f9\" length=\"106253\"\n    >runtime\\locales\\zh-CN.pak</file\n  >\n\n      <file md5=\"8ac51aabfd5c4b487f23232bc35cef6b\" length=\"374152\"\n    >runtime\\swiftshader\\libEGL.dll</file\n  >\n\n      <file md5=\"716554ba5f9d9b441a6efda9aae0b62b\" length=\"2470280\"\n    >runtime\\swiftshader\\libGLESv2.dll</file\n  >\n</file_component>\n"
-        }
-      ],
-      "id": "364e3b23-9398-458b-8ef2-bddce1676466",
-      "createdAt": 1676005591975,
-      "updatedAt": 1676052055516
-    },
-    {
-      "isDeleted": false,
-      "isFavorites": false,
-      "folderId": "",
-      "tagsIds": [],
-      "description": null,
-      "name": "css",
-      "content": [
-        {
-          "label": "css",
-          "language": "css",
-          "value": "body {\n  background-color: #d0e4fe;\n}\n\nh1 {\n  color: orange;\n\n  text-align: center;\n}\n\np {\n  font-family: \"Times New Roman\";\n\n  font-size: 20px;\n}\n"
-        }
-      ],
-      "id": "37c273a7-e85b-414a-8892-9f5bab1cba27",
-      "createdAt": 1676053898653,
-      "updatedAt": 1676059911132
-    },
-    {
-      "isDeleted": false,
-      "isFavorites": false,
-      "folderId": "",
-      "tagsIds": [],
-      "description": null,
-      "name": "css",
-      "content": [
-        {
-          "label": "css",
-          "language": "css",
-          "value": "body {\n  background-color: #d0e4fe;\n}\n\nh1 {\n  color: orange;\n\n  text-align: center;\n}\n\np {\n  font-family: \"Times New Roman\";\n\n  font-size: 20px;\n}\n"
-        }
-      ],
-      "id": "d50d05b7-78c7-47dc-8f30-3880921a87cb",
-      "createdAt": 1676059931487,
-      "updatedAt": 1676059931487
-    },
-    {
-      "isDeleted": false,
-      "isFavorites": false,
-      "folderId": "",
-      "tagsIds": [],
-      "description": null,
-      "name": "javascript",
-      "content": [
-        {
-          "label": "javascript",
-          "language": "javascript",
-          "value": ""
-        }
-      ],
-      "id": "1be4d261-fec4-4a91-879f-96064a808aba",
-      "createdAt": 1676354321571,
-      "updatedAt": 1676354321571
-    },
-    {
-      "isDeleted": false,
-      "isFavorites": false,
-      "folderId": "",
-      "tagsIds": [],
-      "description": null,
-      "name": "pr",
-      "content": [
-        {
-          "label": "pr",
+          "label": "点击事件关闭和开启",
           "language": "pr",
-          "value": ""
+          "value": "pointer-events: none;\n\npointer-events: auto;\n"
         }
       ],
-      "id": "68c1688f-11a4-482e-a0ca-7a991ff6cad1",
-      "createdAt": 1676354326389,
-      "updatedAt": 1676354326389
+      "id": "192983d3-7773-442e-b2ad-f5c5116d352c",
+      "createdAt": 1676511953095,
+      "updatedAt": 1676512022442
+    },
+    {
+      "isDeleted": false,
+      "isFavorites": false,
+      "folderId": "",
+      "tagsIds": [],
+      "description": null,
+      "name": "父元素的伪类事件\n",
+      "content": [
+        {
+          "label": "父元素的伪类事件\n",
+          "language": "javascript",
+          "value": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <style>\n      body {\n        background: #000;\n        display: flex;\n        flex-direction: row;\n      }\n\n      #click {\n        position: relative;\n        width: 100px;\n        height: 100px;\n        background-color: aqua;\n        pointer-events: none;\n        /* 父元素无效 */\n      }\n\n      #click::after {\n        position: absolute;\n        content: \"\";\n        width: 10px;\n        height: 10px;\n        background: #f00;\n        right: -20px;\n        pointer-events: auto;\n        /* 子元素无效 */\n      }\n    </style>\n\n    <title>伪元素事件</title>\n  </head>\n\n  <body>\n    <div id=\"click\">\n      <h1>标题</h1>\n    </div>\n  </body>\n\n  <script>\n    let div = document.getElementById('click')\n    div.addEventListener('click', function (event) {\n    \talert('1')\n    }, false)\n  </script>\n</html>\n"
+        }
+      ],
+      "id": "d3cf8bad-6327-4209-8bb3-cebf0031b773",
+      "createdAt": 1676591471943,
+      "updatedAt": 1676591509747
     }
   ]
 }
