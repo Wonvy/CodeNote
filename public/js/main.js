@@ -1,16 +1,50 @@
-
-
 import { codeLoad, code_add, code_save, showScreen, item_mouseover, sideHide, code_show, code_show_keydonw } from '/js/event.js'
 import { Resize } from '/js/ui.js'
 import { postJsonCategory } from './data.js'
 
-
-
-const navul = document.getElementsByClassName("navul");
+const navul = document.querySelector(".navul");
 const container = document.getElementById("container");
+
 
 new Resize('.rz1').main()
 new Resize('.rz2').main()
+
+
+// 拖拽移动
+const dragMove = (event) => {
+	console.log(event)
+}
+
+
+// dragMousedown()
+
+function dragMousedown() {
+	let pressTimer;
+	let isLongPress = true;
+
+	const mousedown = (event) => {
+		pressTimer = window.setTimeout(() => {
+			if (!isLongPress) {
+				container.addEventListener('mousemove', dragMove)
+				isLongPress = true;
+				window.clearTimeout(pressTimer);
+			}
+			isLongPress = false;
+		}, 500);
+	};
+
+
+	// 鼠标长按
+	container.addEventListener('mousedown', mousedown);
+	container.addEventListener('mouseup', (event) => {
+		// container.removeEventListener('mousemove', dragMove)
+	});
+}
+
+
+
+
+
 
 
 
@@ -19,30 +53,60 @@ new Resize('.rz2').main()
 
 // 拖拽移动
 container.addEventListener("dragstart", (event) => {
+	let item
+	let jsonData = { "ids": [] }
+
+
+
+	if (event.target.className.includes('select')) {
+		console.log(event.target)
+		item = event.target
+	} else {
+		if (event.target.className.includes('title')) {
+			item = event.target.parentNode
+		} else {
+			return
+		}
+	}
+
+
 	// 设置数据
-	event.target.parentElement.classList.add("drag")
-	let data_id = event.target.parentNode.getAttribute("data-id")
-	event.dataTransfer.setData('text/plain', data_id);
+	if (item.className.includes('select')) {
+		let items = document.querySelectorAll('#container .item')
+		items.forEach((subitem) => {
+			if (subitem.className.includes('select')) {
+				jsonData.ids.push(subitem.getAttribute("data-id"))
+			}
+		})
+	} else {
+		// item.classList.add("drag")
+		jsonData.ids.push(item.getAttribute("data-id"))
+	}
+	// console.log("jsonData", jsonData)
+	event.dataTransfer.setData("application/json", JSON.stringify(jsonData));
 }, false)
 
 
-
 // 拖拽结束，鼠标左键释放
-container.addEventListener("dragend", (e) => {
-	e.target.parentElement.classList.remove("drag")
-	for (let node of navul[0].childNodes) {
+container.addEventListener("dragend", (event) => {
+	let item
+
+	if (event.target.className.includes('select')) {
+		item = event.target
+	} else {
+		item = event.target.parentNode
+	}
+	item.classList.remove("drag")
+	for (let node of navul.childNodes) {
 		if (node.className === 'drag') {
 			node.classList.remove('drag')
 		}
 	}
 }, false)
 
-
-
-
-navul[0].addEventListener("dragover", (e) => {
-	let lastNode = e.target
+navul.addEventListener("dragover", (e) => {
 	e.preventDefault();
+	let lastNode = e.target
 
 	if (e.target.nodeName === 'IMG') {
 		// 遍历当前节点的父节点的所有子节点
@@ -59,31 +123,26 @@ navul[0].addEventListener("dragover", (e) => {
 	}
 })
 
-
-navul[0].addEventListener("drop", (event) => {
+navul.addEventListener("drop", (event) => {
 	event.preventDefault();
-	const data = event.dataTransfer.getData('text/plain');
+	console.log("drop", event)
+	// 获取数据
+	const jsonData = JSON.parse(event.dataTransfer.getData("application/json"));
+	const randomParam = Math.random().toString(36).substring(7);
 
 	if (event.target.nodeName === 'IMG') {
-		postJsonCategory(data, event.target.alt) //修改分类
-		// let item = document.querySelector('div[data-id="' + data + '"]')
-		let img = document.querySelector('div[data-id="' + data + '"] .left img')
-		img.src = "icons/" + event.target.alt + ".svg"
-		img.alt = event.target.alt
+
+		// 服务器修改分类
+		postJsonCategory(jsonData, event.target.alt)
+
+		// 修改图标
+		for (let i = 0; i < jsonData.ids.length; i++) {
+			let img = document.querySelector('div[data-id="' + jsonData.ids[i] + '"] .left img')
+			img.src = "/icons/" + event.target.alt + ".svg?" + randomParam
+			img.alt = event.target.alt
+		}
 	}
 }, false)
-
-
-
-// navul[0].addEventListener("dragleave", (e) => {
-// 	for (let node of navul[0].childNodes) {
-// 		if (node.className === 'drag') {
-// 			node.classList.remove('drag')
-// 		}
-// 	}
-// })
-
-
 
 
 // 加载代码
@@ -111,7 +170,7 @@ document.querySelector(".btflow").addEventListener("click", function (e) {
 container.addEventListener("click", code_show, false)
 
 // 点击软件图标
-navul[0].addEventListener("click", code_add, false);
+navul.addEventListener("click", code_add, false);
 
 
 // 鼠标经过

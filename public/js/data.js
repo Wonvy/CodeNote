@@ -21,18 +21,16 @@ async function postJsonAdd(data) {
 }
 
 // 数据分类
-async function postJsonCategory(id, language) {
-	let cc
+async function postJsonCategory(dataids, language) {
+	// json
 	let data = {
-		"category": [
-			{
-				"id": id,
-				"language": language
-			}
-		]
+		"category": []
 	}
-	// console.log(hostURL + '/json/del/')
-	// console.log(data)
+	for (let i = 0; i < dataids.ids.length; i++) {
+		data.category.push({ "id": dataids.ids[i], "language": language })
+	}
+
+
 	let URL = hostURL + '/json/category/'
 	await fetch(URL, {
 		method: 'post',
@@ -47,7 +45,6 @@ async function postJsonCategory(id, language) {
 			// cc = response
 			return response
 		})
-	// return cc
 }
 
 

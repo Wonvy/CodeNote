@@ -11,30 +11,12 @@
         {
           "label": "类：调整元素宽度",
           "language": "javascript",
-          "value": "export { Resize };\n\nclass Resize {\n  constructor(name) {\n    this.name = name;\n  }\n  main() {\n    let start_screenX = 0;\n    let start_clientWidth = 0; // 开始宽度\n    let start_leftX = 0; // 最左边\n    let end_clientWidth = 0; // 结束宽度\n    let resize = getelement(this.name);\n    let parent = resize.parentNode;\n\n    resize.addEventListener(\"mousedown\", mousedown, false);\n\n    // 获取元素\n    function getelement(name) {\n      if (name.indexOf(\".\") != -1) {\n        let resize = document.getElementsByClassName(name.substr(1))[0];\n        return resize;\n      }\n      if (name.indexOf(\"#\") != -1) {\n        let resize = document.getElementById(name.substr(1));\n        return resize;\n      }\n    }\n\n    // 判断点击位置\n    function mousehas(x, y) {\n      if (x < parent.offsetLeft) {\n        // console.log(1)\n        return false;\n      }\n      if (x > parent.offsetLeft + parent.offsetWidth) {\n        // console.log(2)\n        return false;\n      }\n      if (y < parent.offsetTop) {\n        // console.log(3)\n        return false;\n      }\n      if (y > parent.offsetTop + parent.offsetHeight) {\n        // console.log(parent.offsetTop, parent.offsetHeight)\n        // console.log(4)\n        return false;\n      }\n      return true;\n    }\n    // 鼠标按下\n    function mousedown(event) {\n      if (!mousehas(event.clientX, event.clientY)) {\n        return false;\n      }\n      parent.classList.remove(\"mg\");\n      start_clientWidth = parent.offsetWidth;\n      start_screenX = event.clientX;\n      start_leftX = parent.offsetLeft;\n      document.addEventListener(\"mousemove\", mousemove, false);\n      document.addEventListener(\"mouseup\", mouseup, false);\n    }\n    // 鼠标移动\n    function mousemove(event) {\n      end_clientWidth = start_clientWidth + (event.clientX - start_screenX);\n      if (end_clientWidth <= 0) {\n        end_clientWidth = resize.offsetWidth / 2;\n      }\n      parent.style.flex = \"none\";\n      parent.style.width = end_clientWidth + \"px\";\n    }\n    // 鼠标弹起\n    function mouseup(event) {\n      parent.classList.add(\"mg\");\n      document.removeEventListener(\"mousemove\", mousemove, false);\n    }\n  }\n}\n"
+          "value": "export { Resize };\n\nclass Resize {\n  constructor(name) {\n    this.name = name;\n  }\n\n  main() {\n    let start_screenX = 0;\n\n    let start_clientWidth = 0; // 开始宽度\n\n    let start_leftX = 0; // 最左边\n\n    let end_clientWidth = 0; // 结束宽度\n\n    let resize = getelement(this.name);\n\n    let parent = resize.parentNode;\n\n    resize.addEventListener(\"mousedown\", mousedown, false);\n\n    // 获取元素\n\n    function getelement(name) {\n      if (name.indexOf(\".\") != -1) {\n        let resize = document.getElementsByClassName(name.substr(1))[0];\n\n        return resize;\n      }\n\n      if (name.indexOf(\"#\") != -1) {\n        let resize = document.getElementById(name.substr(1));\n\n        return resize;\n      }\n    }\n\n    // 判断点击位置\n\n    function mousehas(x, y) {\n      if (x < parent.offsetLeft) {\n        // console.log(1)\n\n        return false;\n      }\n\n      if (x > parent.offsetLeft + parent.offsetWidth) {\n        // console.log(2)\n\n        return false;\n      }\n\n      if (y < parent.offsetTop) {\n        // console.log(3)\n\n        return false;\n      }\n\n      if (y > parent.offsetTop + parent.offsetHeight) {\n        // console.log(parent.offsetTop, parent.offsetHeight)\n\n        // console.log(4)\n\n        return false;\n      }\n\n      return true;\n    }\n\n    // 鼠标按下\n\n    function mousedown(event) {\n      if (!mousehas(event.clientX, event.clientY)) {\n        return false;\n      }\n\n      parent.classList.remove(\"mg\");\n\n      start_clientWidth = parent.offsetWidth;\n\n      start_screenX = event.clientX;\n\n      start_leftX = parent.offsetLeft;\n\n      document.addEventListener(\"mousemove\", mousemove, false);\n\n      document.addEventListener(\"mouseup\", mouseup, false);\n    }\n\n    // 鼠标移动\n\n    function mousemove(event) {\n      end_clientWidth = start_clientWidth + (event.clientX - start_screenX);\n\n      if (end_clientWidth <= 0) {\n        end_clientWidth = resize.offsetWidth / 2;\n      }\n\n      parent.style.flex = \"none\";\n\n      parent.style.width = end_clientWidth + \"px\";\n    }\n\n    // 鼠标弹起\n\n    function mouseup(event) {\n      parent.classList.add(\"mg\");\n\n      document.removeEventListener(\"mousemove\", mousemove, false);\n    }\n  }\n}\n"
         }
       ],
       "id": "d5fd1d5e-e2f2-4cb0-83ab-f5057cfc0268",
       "createdAt": 1676511495244,
-      "updatedAt": 1676593172483
-    },
-    {
-      "isDeleted": false,
-      "isFavorites": false,
-      "folderId": "",
-      "tagsIds": [],
-      "description": null,
-      "name": "鼠标单击和长按",
-      "content": [
-        {
-          "label": "鼠标单击和长按",
-          "language": "django",
-          "value": "let pressTimer;\n\nlet isLongPress = true;\n\n// 鼠标长按\n\nrz1.addEventListener(\"mousedown\", () => {\n  pressTimer = window.setTimeout(() => {\n    // console.log('鼠标按下')\n\n    isLongPress = false; // 鼠标长按\n  }, 150);\n});\n\n// 鼠标单击\n\nrz1.addEventListener(\"mouseup\", () => {\n  window.clearTimeout(pressTimer);\n\n  if (isLongPress) {\n    // console.log('鼠标单击')\n\n    if (menu.className.includes(\"on\")) {\n      menu.classList.remove(\"on\");\n\n      menu.style.width = \"\";\n    } else {\n      menu.classList.add(\"on\");\n\n      menu.style.width = \"\";\n    }\n  }\n\n  isLongPress = true;\n});\n"
-        }
-      ],
-      "id": "0dc4f95f-68bc-434a-a25f-09b5eb3e0076",
-      "createdAt": 1676511611296,
-      "updatedAt": 1676511698463
+      "updatedAt": 1694643106310
     },
     {
       "isDeleted": false,
@@ -46,7 +28,7 @@
       "content": [
         {
           "label": "父元素透明-子元素不透明",
-          "language": "vscode",
+          "language": "css",
           "value": ".father {\n  background-color: rgba(0, 0, 0, 0.5);\n}\n\n.child {\n  background-color: rgba(0, 0, 0, 0.5);\n}\n"
         }
       ],
@@ -64,7 +46,7 @@
       "content": [
         {
           "label": "点击事件关闭和开启",
-          "language": "pr",
+          "language": "html",
           "value": "pointer-events: none;\n\npointer-events: auto;\n"
         }
       ],
@@ -82,13 +64,67 @@
       "content": [
         {
           "label": "父元素的伪类事件\n",
-          "language": "javascript",
+          "language": "html",
           "value": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <style>\n      body {\n        background: #000;\n        display: flex;\n        flex-direction: row;\n      }\n\n      #click {\n        position: relative;\n        width: 100px;\n        height: 100px;\n        background-color: aqua;\n        pointer-events: none;\n        /* 父元素无效 */\n      }\n\n      #click::after {\n        position: absolute;\n        content: \"\";\n        width: 10px;\n        height: 10px;\n        background: #f00;\n        right: -20px;\n        pointer-events: auto;\n        /* 子元素无效 */\n      }\n    </style>\n\n    <title>伪元素事件</title>\n  </head>\n\n  <body>\n    <div id=\"click\">\n      <h1>标题</h1>\n    </div>\n  </body>\n\n  <script>\n    let div = document.getElementById('click')\n    div.addEventListener('click', function (event) {\n    \talert('1')\n    }, false)\n  </script>\n</html>\n"
         }
       ],
       "id": "d3cf8bad-6327-4209-8bb3-cebf0031b773",
       "createdAt": 1676591471943,
       "updatedAt": 1676591509747
+    },
+    {
+      "isDeleted": false,
+      "isFavorites": false,
+      "folderId": "",
+      "tagsIds": [],
+      "description": null,
+      "name": "javascript",
+      "content": [
+        {
+          "label": "javascript",
+          "language": "javascript",
+          "value": ""
+        }
+      ],
+      "id": "a75198d7-4202-42a3-89f5-2c91700558c8",
+      "createdAt": 1677047012011,
+      "updatedAt": 1677047012011
+    },
+    {
+      "isDeleted": false,
+      "isFavorites": false,
+      "folderId": "",
+      "tagsIds": [],
+      "description": null,
+      "name": "autoit",
+      "content": [
+        {
+          "label": "autoit",
+          "language": "autoit",
+          "value": ""
+        }
+      ],
+      "id": "00f2c28d-05b6-4a24-9adb-9d90ee30a039",
+      "createdAt": 1677511018187,
+      "updatedAt": 1677511054780
+    },
+    {
+      "isDeleted": false,
+      "isFavorites": false,
+      "folderId": "",
+      "tagsIds": [],
+      "description": null,
+      "name": "autoit",
+      "content": [
+        {
+          "label": "autoit",
+          "language": "autoit",
+          "value": ""
+        }
+      ],
+      "id": "3187cb67-45d0-4019-ae3c-1569051ac28a",
+      "createdAt": 1694643140133,
+      "updatedAt": 1694643140133
     }
   ]
 }

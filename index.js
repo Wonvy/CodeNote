@@ -88,21 +88,20 @@ app.post('/json/category', async (req, res) => {
 	// console.log('params', req.params);
 	// console.log('body', req.body);
 	const jsonData = req.body;  //获取请求体参数json
-	console.log(jsonData)
 	try {
 		// 读取数据
 		let db = await getDb()
 		let State = false
 
-
 		// 加工数据
 		for (let i = 0; i < db.snippets.length; i++) {
-			if (db.snippets[i].id === jsonData.category[0].id) {
-				console.log('before', db.snippets[i].content[0].language)
-				db.snippets[i].content[0].language = jsonData.category[0].language
-				console.log('after', db.snippets[i].content[0].language)
-				State = true
-				break
+			// 根据snippets
+			for (let o = 0; o < jsonData.category.length; o++) {
+				if (db.snippets[i].id === jsonData.category[o].id) {
+					db.snippets[i].content[0].language = jsonData.category[o].language
+					State = true //有修改
+					break
+				}
 			}
 		}
 

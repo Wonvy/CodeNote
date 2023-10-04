@@ -372,9 +372,10 @@ html,body
 		max-height: 15em
 		height: 100%
 		border-radius: 0.5em
+		top: 0
 		background-color: rgb(30 30 30)
-		transition: all 0.4s
-		transition: border 0.1s
+		transition: box-shadow 0.3s, top 0.2s ease-out,background-color 0.3s,border 0.3s
+		box-sizing: border-box
 		box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.1)
 		&:hover
 			top: -0.3em
@@ -442,6 +443,8 @@ html,body
 						text-align: center
 						transition: all 0.3s
 		.item-content
+			// pointer-events: none
+			draggable: false
 			height: 100%
 			color: #bbb
 			overflow: auto
@@ -482,11 +485,38 @@ html,body
 						@include nth-child(1,#F8D125)
 					i:nth-child(3)
 						@include nth-child(1,#EC6D4E)
-		&.select
-			box-sizing: border-box
-			border: solid 2px #fff
 	@include ipadPro
 		box-sizing: border-box
+
+#container .item
+	&.drag
+		border: 2px solid #5d6368
+	&.select
+		// draggable: true
+		// -webkit-user-select: none
+		.title
+			user-select: none
+			// -webkit-user-select: none
+			pointer-events: none
+		&::before
+			content: '✓'
+			// pointer-events: none
+			display: flex
+			justify-content: center
+			align-items: center
+			position: absolute
+			width: 100%
+			height: 100%
+			// cursor: move
+			border-radius: 3px
+			font: bold normal normal 4em "Georgia", "PingFang SC"
+			box-sizing: border-box
+			color: #034bc6
+			border: solid 2px #034bc6
+			background-color: rgba(6, 77, 201,0.2)
+			z-index: 9
+			// -webkit-user-select: none
+			// user-select: none
 
 #container.layout-list
 	flex: 1
@@ -620,9 +650,6 @@ html,body
 						@include nth-child(1,#F8D125)
 					i:nth-child(3)
 						@include nth-child(1,#EC6D4E)
-		&.select
-			box-sizing: border-box
-			border: solid 2px #fff
 
 #container.layout-card
 	flex: 1
@@ -718,6 +745,7 @@ html,body
 						text-align: center
 						transition: all 0.3s
 		.item-content
+			// pointer-events: none
 			height: 100%
 			overflow: hidden
 			pre
@@ -755,9 +783,6 @@ html,body
 						@include nth-child(1,#F8D125)
 					i:nth-child(3)
 						@include nth-child(1,#EC6D4E)
-		&.select
-			box-sizing: border-box
-			border: solid 2px #fff
 
 #container.layout-flow
 	flex: 1
@@ -895,14 +920,6 @@ html,body
 						@include nth-child(1,#F8D125)
 					i:nth-child(3)
 						@include nth-child(1,#EC6D4E)
-		&.select
-			box-sizing: border-box
-			border: solid 2px #fff
-
-#container.layout-grid
-	.item
-		&.drag
-			border: 2px solid #5d6368
 
 //滚动条样式
 #article,#container,#article .item-content
@@ -1008,3 +1025,11 @@ td.hljs-ln-code
 		background-color: rgb(69, 69, 69)
 		opacity: 1
 	@include foldingButton(">","▶")
+
+#context-menu
+	display: none
+	position: absolute
+	background-color: #fff
+	border: 1px solid #ccc
+	padding: 5px
+	z-index: 1

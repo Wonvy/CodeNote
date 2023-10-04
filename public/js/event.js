@@ -3,15 +3,78 @@ import { postJsonAdd, postJsonDel, postJsonCategory } from './data.js'
 export { postJsonCategory, code_show, code_add, code_save, showScreen, sideHide, item_mouseover, code_show_keydonw, codeLoad }
 
 
+//取消选择
+function item_UnSelect() {
+	let items = document.querySelectorAll('#container .item')
+	items.forEach((item) => {
+		if (item.className.includes("select")) {
+			item.classList.remove('select')
+			item.draggable = false
+		}
+	});
+}
+
 
 // 显示代码框
 function code_show(e) {
 	const path = e.path || e.composedPath();
+	const container = document.querySelector('#container')
+
+	if (e.target.id === 'container') {
+		item_UnSelect()
+		return
+	}
+
 	try {
 		const index = path.length;
 		if (path[index - 8].className.includes("item")) {
 			let item = path[index - 8];
 			let itemID = item.getAttribute("data-id");
+			console.log('e', e)
+
+			// 按下ctrl键
+			if (e.ctrlKey) {
+				if (item.className.includes("select")) {
+					item.classList.remove('select')
+					item.draggable = false
+				} else {
+					item.classList.add('select')
+					item.draggable = true
+				}
+				return
+			}
+
+			// 按下shift键
+			if (e.shiftKey) {
+				// 查找第一个
+				let itemstart = document.querySelector('.item.select')
+				if (itemstart === null) { return }
+				// 父元素中的索引
+				const indexA = Array.prototype.indexOf.call(itemstart.parentElement.children, itemstart);
+				const indexB = Array.prototype.indexOf.call(itemstart.parentElement.children, item);
+				const itemss = document.querySelectorAll('#container > .item')
+				console.log("itemss", itemss)
+				console.log(Math.min(indexA, indexB), Math.max(indexA, indexB))
+
+				for (let i = Math.min(indexA, indexB); i <= Math.max(indexA, indexB); i++) {
+					if (!itemss[i].className.includes("select")) {
+						itemss[i].classList.add('select')
+						itemss[i].draggable = true
+					}
+				}
+				return
+			}
+
+			if (e.target.className.includes("select")) {
+				// item_UnSelect()
+				return
+			}
+
+			// 点击
+			if (e.target.className.includes("title")) {
+				// console.log('click title')
+				return
+			}
 
 			// 删除代码
 			if (e.target.className.includes("close")) {
@@ -21,6 +84,9 @@ function code_show(e) {
 				}
 				return
 			}
+
+			item_UnSelect()
+
 			// showScreen(true, item.innerHTML);
 		}
 	} catch (err) {

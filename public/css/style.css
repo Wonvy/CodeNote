@@ -405,9 +405,10 @@ html, body {
   max-height: 15em;
   height: 100%;
   border-radius: 0.5em;
+  top: 0;
   background-color: rgb(30, 30, 30);
-  transition: all 0.4s;
-  transition: border 0.1s;
+  transition: box-shadow 0.3s, top 0.2s ease-out, background-color 0.3s, border 0.3s;
+  box-sizing: border-box;
   box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.1);
 }
 #container.layout-grid .item:hover {
@@ -483,6 +484,7 @@ html, body {
   transition: all 0.3s;
 }
 #container.layout-grid .item .item-content {
+  draggable: false;
   height: 100%;
   color: #bbb;
   overflow: auto;
@@ -530,14 +532,34 @@ html, body {
   width: 18px;
   height: 18px;
 }
-#container.layout-grid .item.select {
-  box-sizing: border-box;
-  border: solid 2px #fff;
-}
 @media screen and (max-device-height: 1668px) and (max-device-width: 2388px) {
   #container.layout-grid {
     box-sizing: border-box;
   }
+}
+
+#container .item.drag {
+  border: 2px solid #5d6368;
+}
+#container .item.select .title {
+  user-select: none;
+  pointer-events: none;
+}
+#container .item.select::before {
+  content: "✓";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 3px;
+  font: bold normal normal 4em "Georgia", "PingFang SC";
+  box-sizing: border-box;
+  color: #034bc6;
+  border: solid 2px #034bc6;
+  background-color: rgba(6, 77, 201, 0.2);
+  z-index: 9;
 }
 
 #container.layout-list {
@@ -686,10 +708,6 @@ html, body {
   width: 18px;
   height: 18px;
 }
-#container.layout-list .item.select {
-  box-sizing: border-box;
-  border: solid 2px #fff;
-}
 
 #container.layout-card {
   flex: 1;
@@ -834,10 +852,6 @@ html, body {
   background: #EC6D4E;
   width: 18px;
   height: 18px;
-}
-#container.layout-card .item.select {
-  box-sizing: border-box;
-  border: solid 2px #fff;
 }
 
 #container.layout-flow {
@@ -985,14 +999,6 @@ html, body {
   width: 18px;
   height: 18px;
 }
-#container.layout-flow .item.select {
-  box-sizing: border-box;
-  border: solid 2px #fff;
-}
-
-#container.layout-grid .item.drag {
-  border: 2px solid #5d6368;
-}
 
 #article::-webkit-scrollbar, #container::-webkit-scrollbar, #article .item-content::-webkit-scrollbar {
   width: 1em;
@@ -1107,6 +1113,15 @@ td.hljs-ln-code {
   content: "▶";
   background-color: rgb(80, 80, 80);
   box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+#context-menu {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 5px;
+  z-index: 1;
 }
 
 /*# sourceMappingURL=style.css.map */
