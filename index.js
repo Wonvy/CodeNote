@@ -6,7 +6,7 @@ const { getDb } = require('./db')
 const { SetDb } = require('./db')
 
 
-const port = 3000
+const port = 3333
 
 
 // 静态资源目录 最好使用绝对路径
