@@ -125,6 +125,24 @@
       "id": "3187cb67-45d0-4019-ae3c-1569051ac28a",
       "createdAt": 1694643140133,
       "updatedAt": 1694643140133
+    },
+    {
+      "isDeleted": false,
+      "isFavorites": false,
+      "folderId": "",
+      "tagsIds": [],
+      "description": null,
+      "name": "javascript",
+      "content": [
+        {
+          "label": "javascript",
+          "language": "javascript",
+          "value": ""
+        }
+      ],
+      "id": "7a61beed-4776-4b32-9c83-41840ee36e33",
+      "createdAt": 1698533103956,
+      "updatedAt": 1698533103956
     }
   ]
 }

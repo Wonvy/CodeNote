@@ -3,11 +3,11 @@ export { postJsonAdd, postJsonDel, postJsonCategory }
 // const hostURL = ''
 // const hostURL = 'http://192.168.6.126:3000'
 // const hostURL = 'http://127.0.0.1:3000'
-const hostURL = ''
+const hostURL = '/mycode'
 
 // 添加数据
 async function postJsonAdd(data) {
-	await fetch(hostURL + '/json/add/', {
+	await fetch(hostURL + '/json/add', {
 		method: 'post',
 		headers: {
 			'Content-Type': 'application/json'
@@ -31,7 +31,7 @@ async function postJsonCategory(dataids, language) {
 	}
 
 
-	let URL = hostURL + '/json/category/'
+	let URL = hostURL + '/json/category'
 	await fetch(URL, {
 		method: 'post',
 		headers: {
@@ -59,7 +59,7 @@ async function postJsonDel(id) {
 	}
 	// console.log(hostURL + '/json/del/')
 	// console.log(data)
-	let URL = hostURL + '/json/del/'
+	let URL = hostURL + '/json/del'
 	await fetch(URL, {
 		method: 'post',
 		headers: {

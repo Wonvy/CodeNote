@@ -191,7 +191,7 @@ function code_save(e) {
 
 // 加载代码
 async function codeLoad() {
-	await fetch("./db.json")
+	await fetch("/public/db.json")
 		.then((response) => {
 			return response.json();
 		})
@@ -207,7 +207,7 @@ async function codeLoad() {
 
 				// codetext = codeformat(codetext) //格式化
 				code.append(codetext)
-				item.innerHTML = `<div class="item" data-id="${res.snippets[i].id}"><div class="title" draggable="true"><div class="left"><img src="icons/${res.snippets[i].content[0].language}.svg" alt="${res.snippets[i].content[0].language}"><h3 contenteditable="true" >${res.snippets[i].content[0].label}</h3></div><p class="right"><i class="codeFormat" tip="格式化"></i><i tip="最大化"></i><i class="close" tip="删除"></i></p></div><div class="item-content"> <pre spellcheck="false" contenteditable="${contenteditable}"><code class="language-${res.snippets[i].content[0].language}">${code.innerHTML}</code></pre></div></div>`
+				item.innerHTML = `<div class="item" data-id="${res.snippets[i].id}"><div class="title" draggable="true"><div class="left"><img src="/public/icons/${res.snippets[i].content[0].language}.svg" alt="${res.snippets[i].content[0].language}"><h3 contenteditable="true" >${res.snippets[i].content[0].label}</h3></div><p class="right"><i class="codeFormat" tip="格式化"></i><i tip="最大化"></i><i class="close" tip="删除"></i></p></div><div class="item-content"> <pre spellcheck="false" contenteditable="${contenteditable}"><code class="language-${res.snippets[i].content[0].language}">${code.innerHTML}</code></pre></div></div>`
 				// console.log(item.innerHTML)
 				// console.log(escapeHTML(item.innerHTML))
 				// let codetest = escapeHTML('<div class="item" data-id="09184a16-4c21-4a8e-83f7-b71b1446abd3"></div>')

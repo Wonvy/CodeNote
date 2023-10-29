@@ -10,12 +10,11 @@ const port = 3333
 
 
 // 静态资源目录 最好使用绝对路径
-app.use('', express.static(
-	path.join(__dirname, 'public'),
-	{
-		index: ['inddex.html']
-	}
-));
+// app.use('/public', express.static(path.join(__dirname, 'public'), {
+// 	index: 'index.html'
+// }));
+
+app.use('/public', express.static(__dirname + '/public'));
 
 // 配置解析表单请求体：application/json
 app.use(express.json())
@@ -23,6 +22,9 @@ app.use(express.json())
 app.use(express.urlencoded())
 // 中间件
 app.use((req, res, next) => {
+	if (req.method === 'POST') {
+		console.log('Received POST request with parameters:', req.body);
+	}
 	console.log('app.use', req.method, req.url, Date.now())
 	// console.log(req.method, req.url, req.body, Date.now())
 	// 继续走
@@ -30,17 +32,20 @@ app.use((req, res, next) => {
 })
 
 // 路由 有 顺序
-app.get('/', (req, res) => {
+app.get('/mycode', (req, res) => {
+	console.log('app.get', req.method, req.url, Date.now())
+	// res.send('Hello, mycode!');
+	// return;
 	fs.readFile('./public/index.html', (err, data) => {
 		if (err) {
-			return res.status(404).send('404错误找不到文件index.html')
+			return res.status(404).send('404错误找不到文件index23.html')
 		}
 		res.end(data)
 	})
 })
 
 // 路由-添加
-app.post('/json/add', async (req, res) => {
+app.post('/mycode/json/add', async (req, res) => {
 	// console.log('params', req.params);
 	// console.log('body', req.body);
 	let jsonData = req.body;  //获取请求 体参数json
@@ -84,7 +89,7 @@ app.post('/json/add', async (req, res) => {
 
 
 // 路由-分类
-app.post('/json/category', async (req, res) => {
+app.post('/mycode/json/category', async (req, res) => {
 	// console.log('params', req.params);
 	// console.log('body', req.body);
 	const jsonData = req.body;  //获取请求体参数json
@@ -123,9 +128,10 @@ app.post('/json/category', async (req, res) => {
 
 
 // 路由-删除
-app.post('/json/del', async (req, res) => {
+app.post('/mycode/json/del', async (req, res) => {
 	// console.log('params', req.params);
 	// console.log('body', req.body);
+	console.log('删除成功');
 	const jsonData = req.body;  //获取请求体参数json
 	// console.log(jsonData)
 	try {
@@ -161,12 +167,12 @@ app.post('/json/del', async (req, res) => {
 })
 
 // 路由
-app.get('/list/add/:id', (req, res) => {
+app.get('/mycode/list/add/:id', (req, res) => {
 	res.send(req.params); //返回输入的参数，参数是json
 })
 
 // 路由-添加
-app.post('/add', async (req, res) => {
+app.post('/mycode/add', async (req, res) => {
 	// console.log('params', req.params);
 	console.log('body', req.body);
 	const url = req.body;  //获取请求体参数

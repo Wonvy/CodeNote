@@ -1,6 +1,6 @@
-import { codeLoad, code_add, code_save, showScreen, item_mouseover, sideHide, code_show, code_show_keydonw } from '/js/event.js'
-import { Resize } from '/js/ui.js'
-import { postJsonCategory } from './data.js'
+import { codeLoad, code_add, code_save, showScreen, item_mouseover, sideHide, code_show, code_show_keydonw } from '/public/js/event.js'
+import { Resize } from '/public/js/ui.js'
+import { postJsonCategory } from '/public/js/data.js'
 
 const navul = document.querySelector(".navul");
 const container = document.getElementById("container");
